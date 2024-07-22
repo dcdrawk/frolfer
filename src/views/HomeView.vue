@@ -10,9 +10,11 @@
       class="mb-5"
     >
       Your Friendly Neighbourhood<br>
-      <strong>Disc Golf Score Card</strong>
+      <strong>
+        Disc Golf Score Card
+      </strong>
     </p>
-        
+
     <Button
       as="router-link"
       to="/score-card/new"
