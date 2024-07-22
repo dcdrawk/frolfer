@@ -12,10 +12,13 @@
     "@primevue/themes": "^4.0.0",
     "primevue": "^4.0.0",
     "tailwindcss-primeui": "^0.3.4",
-    "vue": "^3.4.31"
+    "vue": "^3.4.31",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
+    "@stylistic/eslint-plugin": "^2.3.0",
+    "@stylistic/eslint-plugin-ts": "^2.3.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.7.0",
@@ -29,5 +32,8 @@
     "unplugin-vue-components": "^0.27.3",
     "vite": "^5.3.4",
     "vue-tsc": "^2.0.24"
+  },
+  "overrides": {
+    "eslint": "^9.7.0"
   }
 }

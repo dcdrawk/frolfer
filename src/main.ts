@@ -1,17 +1,19 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import router from './router'
 
-import PrimeVue from 'primevue/config';
-import Lara from '@primevue/themes/lara';
+import PrimeVue from 'primevue/config'
+import Lara from '@primevue/themes/lara'
 
-const app = createApp(App);
+const app = createApp(App)
 
 app.use(PrimeVue, {
-    theme: {
-        preset: Lara
-    },
-    ripple: true
-});
+  theme: {
+    preset: Lara
+  },
+  ripple: true
+}).use(router).mount('#app')
 
-app.mount('#app')
+
+// app.mount('#app')

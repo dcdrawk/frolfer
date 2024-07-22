@@ -14,13 +14,13 @@ export default defineConfig({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
-        /\.md$/, // .md
+        /\.md$/ // .md
       ],
     
       // global imports to register
       imports: [
         // presets
-        'vue',
+        'vue'
         // 'vue-router',
         // custom
         // {
@@ -57,18 +57,18 @@ export default defineConfig({
     
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
-      // eslintrc: {
-      //   enabled: false, // Default `false`
-      //   filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-      //   globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-      // },
+      eslintrc: {
+        enabled: true,
+        filepath: './eslintrc-auto-import.mjs', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      }
     }),
     Components({
       dts: true,
 
       resolvers: [
-        PrimeVueResolver(),
-      ],
-    }),
-  ],
+        PrimeVueResolver()
+      ]
+    })
+  ]
 })

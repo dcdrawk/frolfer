@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <HelloWorld />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
