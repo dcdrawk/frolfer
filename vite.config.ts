@@ -52,10 +52,6 @@ export default defineConfig({
       // Inject the imports at the end of other imports
       injectAtEnd: true,
 
-      // resolvers: [
-      //   PrimeVueResolver()
-      // ]
-
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {

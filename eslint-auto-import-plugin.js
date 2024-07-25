@@ -1,6 +1,6 @@
-import eslintrcAutoImport from "./eslintrc-auto-import.mjs"
+import eslintrcAutoImport from './eslintrc-auto-import.mjs'
 
-export default  {
+export default {
   languageOptions: {
     globals: {
       ...eslintrcAutoImport.globals

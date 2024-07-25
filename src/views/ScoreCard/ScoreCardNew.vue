@@ -1,130 +1,5 @@
 
 <script setup lang="ts">
-import { InputNumberInputEvent } from 'primevue/inputnumber'
-import AccordionPanel from 'primevue/accordionpanel'
-import AccordionHeader from 'primevue/accordionheader'
-import AccordionContent from 'primevue/accordioncontent'
-import { SelectChangeEvent } from 'primevue/select'
-
-enum CourseType {
-  PAR_THREE,
-  PAR_FOUR,
-  VARIABLE_PAR
-}
-
-const courseName = ref(undefined)
-const courseType = ref<CourseType>(CourseType.PAR_THREE)
-const numberOfHoles = ref(9)
-
-const courseTypes = [{
-  text: 'Par 3',
-  value: CourseType.PAR_THREE
-},
-{
-  text: 'Par 4',
-  value: CourseType.PAR_FOUR
-},
-{
-  text: 'Variable Par',
-  value: CourseType.VARIABLE_PAR
-}]
-
-const holeTemplate = {
-  par: 3
-}
-
-interface IHole {
-  expanded?: boolean
-  par: number
-  name?: string
-  distance?: string
-}
-
-interface IState {
-  holes: IHole[]
-}
-
-const state = reactive<IState>({
-  holes: new Array(numberOfHoles.value).fill({
-    par: 3
-  }).map(item => ({
-    ...item
-  }))
-})
-
-watch(numberOfHoles, (newValue, oldValue) => {
-  if (!oldValue) return
-
-  if (newValue > oldValue) {
-    state.holes = state.holes
-      .slice(0, newValue)
-      .concat([...new Array(newValue - oldValue)
-        .fill(holeTemplate, 0, newValue - oldValue).map((hole => ({
-          ...hole
-        })))]
-      )
-  } else {
-    state.holes = state.holes
-      .slice(0, newValue)
-  }
-}, {
-  immediate: true
-})
-
-interface CourseTypeChangeEvent extends SelectChangeEvent {
-  value: CourseType
-}
-
-const handleCourseTypeInput = (event: CourseTypeChangeEvent) => {
-  const {
-    value
-  } = event
-
-  courseType.value = value
-
-  state.holes = state.holes.map((hole) => {
-    let par = hole.par
-
-    switch (value) {
-      case CourseType.PAR_FOUR:
-        par = 4
-        break
-      case CourseType.PAR_THREE:
-        par = 3
-        break
-      case CourseType.VARIABLE_PAR:
-      default:
-    }
-
-    return {
-      ...hole,
-      par
-    }
-  })
-}
-
-const handleHoleNameInput = (event: Event, holeNumber: number) => {
-  const {
-    value
-  } = event.target as HTMLInputElement
-
-  state.holes[holeNumber].name = value
-}
-
-const handleHoleDistanceInput = (event: Event, holeNumber: number) => {
-  const {
-    value
-  } = event.target as HTMLInputElement
-
-  state.holes[holeNumber].distance = value
-}
-
-const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) => {
-  state.holes[holeNumber].par = event.value as number
-}
-// const handleHoleDistanceInput = (event: InputNumberInputEvent, holeNumber: number) => {
-//   state.holes[holeNumber].distance = event.value as number
-// }
 </script>
 
 <template>
@@ -134,10 +9,11 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
     </h2>
 
     <Message severity="info">
-      Your Course List is empty, start by adding a New Course.
+      Your Course List is empty. Start by adding a New Course.
     </Message>
 
-    <form class="mt-8">
+    <CourseForm />
+    <!-- <form class="mt-8">
       <div class=" max-w-[420px]">
         <h3 class="text-2xl font-semibold mb-8">
           New Course
@@ -271,7 +147,7 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
       </Accordion>
 
       <Button label="Start Scoring!" />
-    </form>
+    </form> -->
   </section>
 </template>
 
