@@ -43,19 +43,26 @@ export default [
       ],
       '@typescript-eslint/no-unused-vars': 'off',
       '@stylistic/array-bracket-newline': [
-        'error', 'always'
+        'error', 'consistent'
       ],
       '@stylistic/array-bracket-spacing': [
-        'error', 'always', {
+        'error',
+        'never',
+        {
           'objectsInArrays': false
         }
       ],
       '@stylistic/array-element-newline': [
-        'error', 'consistent'
+        'error',
+        {
+          'consistent': true,
+          'multiline': true
+        }
       ],
       '@stylistic/no-multi-spaces': 'error',
       '@stylistic/no-multiple-empty-lines': [
-        'error', {
+        'error',
+        {
           'max': 1
         }
       ],
@@ -64,7 +71,8 @@ export default [
       ],
       '@stylistic/no-trailing-spaces': 'warn',
       '@stylistic/object-curly-newline': [
-        'error', {
+        'error',
+        {
           'ObjectExpression': 'always',
           'ObjectPattern': 'always'
         }
@@ -93,8 +101,20 @@ export default [
       '@stylistic/ts/semi': [
         'error', 'never'
       ],
+      '@stylistic/ts/member-delimiter-style': ['error',
+        {
+          'multiline': {
+            'delimiter': 'none',
+            'requireLast': true
+          },
+          'singleline': {
+            'delimiter': 'semi',
+            'requireLast': true
+          }
+        }],
       'vue/singleline-html-element-content-newline': [
-        'error', {
+        'error',
+        {
           'ignoreWhenNoAttributes': false,
           'ignoreWhenEmpty': false,
           'ignores': [
@@ -104,7 +124,8 @@ export default [
         }
       ],
       'vue/multiline-html-element-content-newline': [
-        'error', {
+        'error',
+        {
           'ignoreWhenEmpty': true,
           'ignores': [
           ],

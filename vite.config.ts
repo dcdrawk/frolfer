@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { PrimeVueResolver } from 'unplugin-vue-components/resolvers'
+// import { PrimeVueResolver } from 'unplugin-vue-components/resolvers'
+import { PrimeVueResolver } from '@primevue/auto-import-resolver'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +17,7 @@ export default defineConfig({
         /\.vue\?vue/, // .vue
         /\.md$/ // .md
       ],
-    
+
       // global imports to register
       imports: [
         // presets
@@ -38,23 +39,23 @@ export default defineConfig({
         //   type: true,
         // },
       ],
-    
+
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
       // dts: './auto-imports.d.ts',
       dts: true,
-    
+
       // Auto import inside Vue template
       vueTemplate: true,
-    
+
       // Inject the imports at the end of other imports
       injectAtEnd: true,
 
       // resolvers: [
       //   PrimeVueResolver()
       // ]
-    
+
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
