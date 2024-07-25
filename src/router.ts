@@ -5,12 +5,12 @@ import ScoreCardNew from './views/ScoreCard/ScoreCardNew.vue'
 
 const routes = [
   { path: '/', component: HomeView },
-  { path: '/score-card/new', component: ScoreCardNew }
+  { path: '/score-card/new', component: ScoreCardNew },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
 
 export default router

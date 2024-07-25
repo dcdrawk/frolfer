@@ -15,13 +15,13 @@ export default defineConfig({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
-        /\.md$/ // .md
+        /\.md$/, // .md
       ],
 
       // global imports to register
       imports: [
         // presets
-        'vue'
+        'vue',
         // 'vue-router',
         // custom
         // {
@@ -57,15 +57,15 @@ export default defineConfig({
       eslintrc: {
         enabled: true,
         filepath: './eslintrc-auto-import.mjs', // Default `./.eslintrc-auto-import.json`
-        globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-      }
+        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
     }),
     Components({
       dts: true,
 
       resolvers: [
-        PrimeVueResolver()
-      ]
-    })
-  ]
+        PrimeVueResolver(),
+      ],
+    }),
+  ],
 })

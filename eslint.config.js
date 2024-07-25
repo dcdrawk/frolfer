@@ -3,8 +3,9 @@ import pluginJs from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
 import eslintAutoImport from './eslint-auto-import-plugin.js'
-import stylistic from '@stylistic/eslint-plugin'
-import stylisticTs from '@stylistic/eslint-plugin-ts'
+// import stylistic from '@stylistic/eslint-plugin'
+// import stylisticTs from '@stylistic/eslint-plugin-ts'
+import neostandard from 'neostandard'
 
 export default [
   eslintAutoImport,
@@ -12,126 +13,65 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
-    }
+        ...globals.node,
+      },
+    },
   },
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+  // ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
+  ...neostandard({
+    files: [
+      '**/*.vue',
+    ],
+    filesTs: [
+      '**/*.ts',
+    ],
+    ts: true,
+  }),
   {
     files: [
-      '**/*.vue'
+      '**/*.vue',
     ],
     languageOptions: {
       parserOptions: {
-        parser: tseslint.parser
-      }
-    }
+        parser: tseslint.parser,
+      },
+    },
   },
   {
     files: [
-      '**/*.{js,mjs,cjs,ts,vue}'
+      '**/*.{js,mjs,cjs,ts,vue}',
     ],
     plugins: {
-      '@stylistic': stylistic,
-      '@stylistic/ts': stylisticTs
+    //   '@stylistic': stylistic,
+    //   '@stylistic/ts': stylisticTs
     },
     rules: {
       'no-console': [
-        'warn'
+        'warn',
       ],
       '@typescript-eslint/no-unused-vars': 'off',
-      '@stylistic/array-bracket-newline': [
-        'error', 'consistent'
-      ],
-      '@stylistic/array-bracket-spacing': [
-        'error',
-        'never',
-        {
-          'objectsInArrays': false
-        }
-      ],
-      '@stylistic/array-element-newline': [
-        'error',
-        {
-          'consistent': true,
-          'multiline': true
-        }
-      ],
-      '@stylistic/no-multi-spaces': 'error',
-      '@stylistic/no-multiple-empty-lines': [
-        'error',
-        {
-          'max': 1
-        }
-      ],
-      '@stylistic/comma-style': [
-        'error', 'last'
-      ],
-      '@stylistic/no-trailing-spaces': 'warn',
-      '@stylistic/object-curly-newline': [
-        'error',
-        {
-          'ObjectExpression': 'always',
-          'ObjectPattern': 'always'
-        }
-      ],
-      '@stylistic/object-curly-spacing': [
-        'error', 'always'
-      ],
-      '@stylistic/object-property-newline': 'error',
-      '@stylistic/quotes': [
-        'error', 'single'
-      ],
-      '@stylistic/space-before-blocks': 'error',
-      '@stylistic/ts/block-spacing': [
-        'warn', 'always'
-      ],
-      '@stylistic/ts/brace-style': [
-        'warn', '1tbs'
-      ],
-      '@stylistic/ts/comma-dangle': [
-        'error', 'never'
-      ],
-      '@stylistic/ts/comma-spacing': 'error',
-      '@stylistic/ts/indent': [
-        'error', 2
-      ],
-      '@stylistic/ts/semi': [
-        'error', 'never'
-      ],
-      '@stylistic/ts/member-delimiter-style': ['error',
-        {
-          'multiline': {
-            'delimiter': 'none',
-            'requireLast': true
-          },
-          'singleline': {
-            'delimiter': 'semi',
-            'requireLast': true
-          }
-        }],
       'vue/singleline-html-element-content-newline': [
         'error',
         {
-          'ignoreWhenNoAttributes': false,
-          'ignoreWhenEmpty': false,
-          'ignores': [
+          ignoreWhenNoAttributes: false,
+          ignoreWhenEmpty: false,
+          ignores: [
           ],
-          'externalIgnores': [
-          ]
-        }
+          externalIgnores: [
+          ],
+        },
       ],
       'vue/multiline-html-element-content-newline': [
         'error',
         {
-          'ignoreWhenEmpty': true,
-          'ignores': [
+          ignoreWhenEmpty: true,
+          ignores: [
           ],
-          'allowEmptyLines': false
-        }
-      ]
-    }
-  }
+          allowEmptyLines: false,
+        },
+      ],
+    },
+  },
 ]

@@ -3,7 +3,7 @@ import { CourseType } from './course-types'
 
 const {
   hole,
-  name
+  name,
 } = defineProps<{
   distance?: string
   hole: number
@@ -83,4 +83,3 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
     </AccordionContent>
   </AccordionPanel>
 </template>
-

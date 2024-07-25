@@ -1,19 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './index.html', './src/**/*.{vue,ts}'
+    './index.html', './src/**/*.{vue,ts}',
   ],
   theme: {
     fontFamily: {
-      'sans': [
-        'Rubik'
-      ]
+      sans: [
+        'Rubik',
+      ],
     },
     extend: {
-    }
+    },
   },
   plugins: [
-    require('tailwindcss-primeui')
-  ]
+    require('tailwindcss-primeui'),
+  ],
 }
-

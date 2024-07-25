@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { SelectChangeEvent } from 'primevue/select'
@@ -11,27 +10,27 @@ const numberOfHoles = ref(9)
 
 const courseTypeOptions = [{
   text: 'Par 3',
-  value: CourseType.PAR_THREE
+  value: CourseType.PAR_THREE,
 },
 {
   text: 'Par 4',
-  value: CourseType.PAR_FOUR
+  value: CourseType.PAR_FOUR,
 },
 {
   text: 'Variable Par',
-  value: CourseType.VARIABLE_PAR
+  value: CourseType.VARIABLE_PAR,
 }]
 
 const holeTemplate = {
-  par: 3
+  par: 3,
 }
 
 const state = reactive<IState>({
   holes: new Array(numberOfHoles.value).fill({
-    par: 3
+    par: 3,
   }).map(item => ({
-    ...item
-  }))
+    ...item,
+  })),
 })
 
 watch(numberOfHoles, (newValue, oldValue) => {
@@ -42,7 +41,7 @@ watch(numberOfHoles, (newValue, oldValue) => {
       .slice(0, newValue)
       .concat([...new Array(newValue - oldValue)
         .fill(holeTemplate, 0, newValue - oldValue).map((hole => ({
-          ...hole
+          ...hole,
         })))]
       )
   } else {
@@ -50,7 +49,7 @@ watch(numberOfHoles, (newValue, oldValue) => {
       .slice(0, newValue)
   }
 }, {
-  immediate: true
+  immediate: true,
 })
 
 interface CourseTypeChangeEvent extends SelectChangeEvent {
@@ -59,7 +58,7 @@ interface CourseTypeChangeEvent extends SelectChangeEvent {
 
 const handleCourseTypeInput = (event: CourseTypeChangeEvent) => {
   const {
-    value
+    value,
   } = event
 
   courseType.value = value
@@ -80,14 +79,14 @@ const handleCourseTypeInput = (event: CourseTypeChangeEvent) => {
 
     return {
       ...hole,
-      par
+      par,
     }
   })
 }
 
 const handleHoleNameInput = (event: Event, holeNumber: number) => {
   const {
-    value
+    value,
   } = event.target as HTMLInputElement
 
   state.holes[holeNumber].name = value
@@ -95,7 +94,7 @@ const handleHoleNameInput = (event: Event, holeNumber: number) => {
 
 const handleHoleDistanceInput = (event: Event, holeNumber: number) => {
   const {
-    value
+    value,
   } = event.target as HTMLInputElement
 
   state.holes[holeNumber].distance = value
