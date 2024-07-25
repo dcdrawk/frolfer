@@ -18,9 +18,8 @@
     <Button
       as="router-link"
       to="/score-card/new"
-    >
-      Start a Score Card
-    </Button>
+      label="Start a Score Card"
+    />
   </section>
 </template>
 

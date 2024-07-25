@@ -165,20 +165,6 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
                 @change="handleCourseTypeInput"
               />
             </div>
-            <!-- <div class="w-full md:w-56">
-              <label id="dd-city">
-                Select a City
-              </label>
-              <Select
-                v-model="courseType"
-                input-id="dd-city"
-                :options="courseTypeOptions"
-                option-label="text"
-                option-value="value"
-                class="w-full"
-                aria-labelledby="dd-city"
-              />
-            </div> -->
           </div>
         </div>
       </div>
