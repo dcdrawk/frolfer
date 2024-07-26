@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CourseType } from './course-types'
+import { CourseType } from '../types'
 
 const {
   hole,
@@ -82,4 +82,4 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
       </div>
     </AccordionContent>
   </AccordionPanel>
-</template>
+</template>../../../components/course/course-types

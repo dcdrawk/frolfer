@@ -3,8 +3,6 @@ import pluginJs from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
 import eslintAutoImport from './eslint-auto-import-plugin.js'
-// import stylistic from '@stylistic/eslint-plugin'
-// import stylisticTs from '@stylistic/eslint-plugin-ts'
 import neostandard from 'neostandard'
 
 export default [
@@ -18,9 +16,9 @@ export default [
     },
   },
   pluginJs.configs.recommended,
-  // ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   ...neostandard({
+    ignores: ['eslintrc-auto-import.mjs', 'auto-imports.d.ts', 'components.d.ts'],
     files: [
       '**/*.vue',
     ],
@@ -33,6 +31,7 @@ export default [
     files: [
       '**/*.vue',
     ],
+    ignores: ['./eslintrc-auto-import.mjs'],
     languageOptions: {
       parserOptions: {
         parser: tseslint.parser,
@@ -43,10 +42,7 @@ export default [
     files: [
       '**/*.{js,mjs,cjs,ts,vue}',
     ],
-    plugins: {
-    //   '@stylistic': stylistic,
-    //   '@stylistic/ts': stylisticTs
-    },
+    ignores: ['./eslintrc-auto-import.mjs'],
     rules: {
       'no-console': [
         'warn',

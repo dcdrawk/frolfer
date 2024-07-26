@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { SelectChangeEvent } from 'primevue/select'
-import type { IState } from './course-types'
-import { CourseType } from './course-types'
+import type { IState } from '../types'
+import { CourseType } from '../types'
 import { Form, useField } from 'vee-validate'
 
 // const courseName = ref(undefined)
@@ -111,24 +111,14 @@ const validationSchema = {
   courseName: 'required',
 }
 
-const handleSubmit = () => {
-  console.log('submit the form!', errorMessage.value, courseName.value)
-  validate()
-}
+const handleSubmit = async () => {
+  const { valid } = await validate()
 
-// const { handleSubmit } = useForm({
-//   // validationSchema: yup.object({
-//   //   firstName: yup.string().required(),
-//   //   lastName: yup.string().required(),
-//   //   email: yup.string().required().email(),
-//   //   password: yup.string().required().min(6),
-//   //   passwordConfirm: yup
-//   //     .string()
-//   //     .required()
-//   //     .min(6)
-//   //     .oneOf([yup.ref('password')]),
-//   // }),
-// })
+  if (valid) {
+    // console.log('valid!')
+  }
+  // console.log()
+}
 </script>
 
 <template>
@@ -236,4 +226,4 @@ const handleSubmit = () => {
       />
     </Form>
   </section>
-</template>
+</template>../../../components/course/course-types../../../components/course/course-types

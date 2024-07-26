@@ -14,3 +14,10 @@ export enum CourseType {
   PAR_FOUR,
   VARIABLE_PAR
 }
+
+export interface ICourse {
+  name: string
+  numberOfHoles: number
+  courseType: CourseType
+  holes: IHole[]
+}

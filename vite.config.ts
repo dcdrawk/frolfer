@@ -23,22 +23,8 @@ export default defineConfig({
         'vue',
         'pinia',
         'vee-validate',
-        // 'vue-router',
-        // custom
-        // {
-        //   '@vueuse/core': [
-        //     // named imports
-        //     'useMouse', // import { useMouse } from '@vueuse/core',
-        //     // alias
-        //     ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
-        //   ],
-        // },
-        // example type import
-        // {
-        //   from: 'vue-router',
-        //   imports: ['RouteLocationRaw'],
-        //   type: true,
-        // },
+        '@vueuse/core',
+        'vue-router',
       ],
 
       packagePresets: ['vee-validate'],
@@ -65,6 +51,8 @@ export default defineConfig({
     }),
     Components({
       dts: true,
+
+      dirs: ['src/components', 'src/features'],
 
       resolvers: [
         PrimeVueResolver(),
