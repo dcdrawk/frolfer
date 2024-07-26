@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { SelectChangeEvent } from 'primevue/select'
-import type { IState } from '../types'
+import type { ICourse, IState } from '../types'
 import { CourseType } from '../types'
-import { Form, useField } from 'vee-validate'
+import { Form } from 'vee-validate'
+import { useCoursesStore } from '../store/useCoursesStore'
 
-// const courseName = ref(undefined)
+const { value: courseName, errorMessage, validate } = useField<string>('courseName', 'required')
 const courseType = ref<CourseType>(CourseType.PAR_THREE)
 const numberOfHoles = ref(9)
+const accordionState = ref(['0'])
 
 const courseTypeOptions = [{
   text: 'Par 3',
@@ -32,6 +34,16 @@ const state = reactive<IState>({
   }).map(item => ({
     ...item,
   })),
+})
+
+const course = computed<ICourse>(() => {
+  return {
+    id: '',
+    name: courseName.value,
+    numberOfHoles: numberOfHoles.value,
+    courseType: courseType.value,
+    holes: state.holes,
+  }
 })
 
 watch(numberOfHoles, (newValue, oldValue) => {
@@ -105,19 +117,18 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
   state.holes[holeNumber].par = event.value as number
 }
 
-const { value: courseName, errorMessage, validate } = useField<string>('courseName', 'required')
-
 const validationSchema = {
   courseName: 'required',
 }
+
+const coursesStore = useCoursesStore()
 
 const handleSubmit = async () => {
   const { valid } = await validate()
 
   if (valid) {
-    // console.log('valid!')
+    coursesStore.create(course.value)
   }
-  // console.log()
 }
 </script>
 
@@ -129,8 +140,6 @@ const handleSubmit = async () => {
       @submit="handleSubmit"
       @invalid-submit="handleSubmit"
     >
-      <!-- @invalid-submit="handleSubmit" -->
-      <!-- @submit="handleSubmit" -->
       <div class=" max-w-[420px]">
         <h3 class="text-2xl font-semibold mb-8">
           New Course
@@ -202,7 +211,7 @@ const handleSubmit = async () => {
       <Divider />
 
       <Accordion
-        :value="['0']"
+        :value="accordionState"
         multiple
         class="mb-8"
       >
@@ -226,4 +235,4 @@ const handleSubmit = async () => {
       />
     </Form>
   </section>
-</template>../../../components/course/course-types../../../components/course/course-types
+</template>

@@ -76,10 +76,10 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
             button-layout="horizontal"
             :step="1"
             :min="1"
-            @input="emit('input-par')"
+            @input="emit('input-par', $event)"
           />
         </FloatLabel>
       </div>
     </AccordionContent>
   </AccordionPanel>
-</template>../../../components/course/course-types
+</template>

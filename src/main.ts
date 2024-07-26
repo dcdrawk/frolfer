@@ -9,12 +9,17 @@ import Lara from '@primevue/themes/lara'
 import 'primeicons/primeicons.css'
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(PrimeVue, {
-  theme: {
-    preset: Lara,
-  },
-  ripple: true,
-}).use(router).mount('#app')
+app
+  .use(PrimeVue, {
+    theme: {
+      preset: Lara,
+    },
+    ripple: true,
+  })
+  .use(router)
+  .use(pinia)
+  .mount('#app')
 
 // app.mount('#app')

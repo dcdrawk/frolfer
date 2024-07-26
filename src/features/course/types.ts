@@ -16,6 +16,7 @@ export enum CourseType {
 }
 
 export interface ICourse {
+  id: string
   name: string
   numberOfHoles: number
   courseType: CourseType
