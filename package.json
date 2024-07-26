@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@primevue/themes": "^4.0.0",
+    "@vee-validate/rules": "^4.13.2",
+    "pinia": "^2.1.7",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.0",
     "tailwindcss-primeui": "^0.3.4",
+    "vee-validate": "^4.13.2",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
   },

@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import router from './router'
+import './vee-validate'
 
 import PrimeVue from 'primevue/config'
 import Lara from '@primevue/themes/lara'

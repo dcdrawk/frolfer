@@ -3,8 +3,9 @@ import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { SelectChangeEvent } from 'primevue/select'
 import type { IState } from './course-types'
 import { CourseType } from './course-types'
+import { Form, useField } from 'vee-validate'
 
-const courseName = ref(undefined)
+// const courseName = ref(undefined)
 const courseType = ref<CourseType>(CourseType.PAR_THREE)
 const numberOfHoles = ref(9)
 
@@ -103,11 +104,43 @@ const handleHoleDistanceInput = (event: Event, holeNumber: number) => {
 const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) => {
   state.holes[holeNumber].par = event.value as number
 }
+
+const { value: courseName, errorMessage, validate } = useField<string>('courseName', 'required')
+
+const validationSchema = {
+  courseName: 'required',
+}
+
+const handleSubmit = () => {
+  console.log('submit the form!', errorMessage.value, courseName.value)
+  validate()
+}
+
+// const { handleSubmit } = useForm({
+//   // validationSchema: yup.object({
+//   //   firstName: yup.string().required(),
+//   //   lastName: yup.string().required(),
+//   //   email: yup.string().required().email(),
+//   //   password: yup.string().required().min(6),
+//   //   passwordConfirm: yup
+//   //     .string()
+//   //     .required()
+//   //     .min(6)
+//   //     .oneOf([yup.ref('password')]),
+//   // }),
+// })
 </script>
 
 <template>
   <section class="container mx-auto">
-    <form class="mt-8">
+    <Form
+      class="mt-8"
+      :validation-schema="validationSchema"
+      @submit="handleSubmit"
+      @invalid-submit="handleSubmit"
+    >
+      <!-- @invalid-submit="handleSubmit" -->
+      <!-- @submit="handleSubmit" -->
       <div class=" max-w-[420px]">
         <h3 class="text-2xl font-semibold mb-8">
           New Course
@@ -117,13 +150,21 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
             <label
               for="courseName"
             >
-              Course Name
+              Course Name*
             </label>
             <InputText
               id="courseName"
               v-model="courseName"
+              name="courseName"
               fluid
+              :invalid="!!errorMessage"
             />
+            <small
+              v-if="!!errorMessage"
+              class="absolute -bottom-6 left-1 text-red-300"
+            >
+              Course Name is Required
+            </small>
           </FloatLabel>
 
           <div class="w-full flex gap-4">
@@ -189,7 +230,10 @@ const handleHoleParInput = (event: InputNumberInputEvent, holeNumber: number) =>
         />
       </Accordion>
 
-      <Button label="Start Scoring!" />
-    </form>
+      <Button
+        label="Start Scoring!"
+        type="submit"
+      />
+    </Form>
   </section>
 </template>
