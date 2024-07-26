@@ -12,6 +12,7 @@ export default defineConfig({
       // targets to transform
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.ts$/,
         /\.vue$/,
         /\.vue\?vue/, // .vue
         /\.md$/, // .md
