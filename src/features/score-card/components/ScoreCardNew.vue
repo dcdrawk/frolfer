@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useCoursesStore } from '../../course/store/useCoursesStore'
+import { useScoreCardStore } from '../store/useScoreCardStore'
 
+const router = useRouter()
 const { courses } = useCoursesStore()
+const { create: createScoreCard } = useScoreCardStore()
 
 const selectedCourseId = ref<string | null>(null)
 
@@ -23,12 +26,26 @@ const courseSelectOptions = computed(() => {
   }].concat(options)
 })
 
-const isNewCourse = computed(() => selectedCourseId.value === 'new')
+const isNewCourse = computed(() => selectedCourseId.value === 'new' || courses.length === 0)
+
+const handleCreateScoreCard = () => {
+  if (!selectedCourseId.value) return
+
+  const { id } = createScoreCard({
+    id: '',
+    courseId: selectedCourseId.value,
+    players: [],
+    scores: {},
+    date: new Date().toLocaleDateString(),
+  })
+
+  router.push(id)
+}
 </script>
 
 <template>
   <h2 class="text-4xl font-semibold mb-8">
-    Score Card
+    New Score Card
   </h2>
 
   <Message
@@ -38,7 +55,10 @@ const isNewCourse = computed(() => selectedCourseId.value === 'new')
     Your Course List is empty. Start by adding a New Course.
   </Message>
 
-  <div class="flex flex-col max-w-[420px]">
+  <div
+    v-if="courses.length"
+    class="flex flex-col max-w-[420px]"
+  >
     <div>
       <label class="block mb-2">
         Select a Course
@@ -55,12 +75,8 @@ const isNewCourse = computed(() => selectedCourseId.value === 'new')
     <CourseInfoCard
       v-if="selectedCourse"
       :course="selectedCourse"
-    >
-      <Button
-        v-if="!isNewCourse"
-        label="Start Scoring!"
-      />
-    </courseinfocard>
+      @start-course="handleCreateScoreCard"
+    />
   </div>
 
   <CourseForm v-if="isNewCourse" />

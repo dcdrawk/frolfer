@@ -1,4 +1,4 @@
-interface IScore {
+export interface IScore {
   [key: string]: number[]
 }
 

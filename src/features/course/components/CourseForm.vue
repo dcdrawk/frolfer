@@ -135,13 +135,13 @@ const handleSubmit = async () => {
 <template>
   <section class="container mx-auto">
     <Form
-      class="mt-8"
       :validation-schema="validationSchema"
       @submit="handleSubmit"
       @invalid-submit="handleSubmit"
     >
-      <div class=" max-w-[420px]">
-        <h3 class="text-2xl font-semibold mb-8">
+      <Divider />
+      <div class="max-w-[420px]">
+        <h3 class="text-2xl font-semibold my-8">
           New Course
         </h3>
         <div class="flex flex-wrap">

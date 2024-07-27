@@ -3,7 +3,7 @@
 
 <template>
   <section class="container mx-auto py-12 px-4">
-    <ScoreCardFormNew />
+    <ScoreCardEdit />
   </section>
 </template>
 
