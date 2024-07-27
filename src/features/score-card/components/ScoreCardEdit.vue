@@ -43,6 +43,8 @@ if (activeScoreCard && activeCourseId !== activeScoreCard.value?.courseId) {
     Welcome to score card {{ scoreCardStore.activeId }}
   </Message>
 
+  <ScoreCardTable />
+
   <!-- <div class="flex flex-col max-w-[420px]">
     <div>
       <label class="block mb-2">

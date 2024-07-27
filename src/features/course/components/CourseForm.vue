@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { InputNumberInputEvent } from 'primevue/inputnumber'
-import { SelectChangeEvent } from 'primevue/select'
+import type { InputNumberInputEvent } from 'primevue/inputnumber'
+import type { SelectChangeEvent } from 'primevue/select'
 import type { ICourse, IState } from '../types'
 import { CourseType } from '../types'
 import { Form } from 'vee-validate'
@@ -14,12 +14,10 @@ const accordionState = ref(['0'])
 const courseTypeOptions = [{
   text: 'Par 3',
   value: CourseType.PAR_THREE,
-},
-{
+}, {
   text: 'Par 4',
   value: CourseType.PAR_FOUR,
-},
-{
+}, {
   text: 'Variable Par',
   value: CourseType.VARIABLE_PAR,
 }]
@@ -53,7 +51,8 @@ watch(numberOfHoles, (newValue, oldValue) => {
     state.holes = state.holes
       .slice(0, newValue)
       .concat([...new Array(newValue - oldValue)
-        .fill(holeTemplate, 0, newValue - oldValue).map((hole => ({
+        .fill(holeTemplate, 0, newValue - oldValue)
+        .map((hole => ({
           ...hole,
         })))]
       )
@@ -70,9 +69,7 @@ interface CourseTypeChangeEvent extends SelectChangeEvent {
 }
 
 const handleCourseTypeInput = (event: CourseTypeChangeEvent) => {
-  const {
-    value,
-  } = event
+  const { value } = event
 
   courseType.value = value
 
@@ -98,17 +95,13 @@ const handleCourseTypeInput = (event: CourseTypeChangeEvent) => {
 }
 
 const handleHoleNameInput = (event: Event, holeNumber: number) => {
-  const {
-    value,
-  } = event.target as HTMLInputElement
+  const { value } = event.target as HTMLInputElement
 
   state.holes[holeNumber].name = value
 }
 
 const handleHoleDistanceInput = (event: Event, holeNumber: number) => {
-  const {
-    value,
-  } = event.target as HTMLInputElement
+  const { value } = event.target as HTMLInputElement
 
   state.holes[holeNumber].distance = value
 }
