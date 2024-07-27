@@ -208,12 +208,10 @@ const handleSubmit = async () => {
         </div>
       </div>
 
-      <Divider />
-
       <Accordion
         :value="accordionState"
         multiple
-        class="mb-8"
+        class="my-8"
       >
         <CourseHoleAccordionPanel
           v-for="i in state.holes.length"

@@ -28,7 +28,7 @@ const isNewCourse = computed(() => selectedCourseId.value === 'new')
 
 <template>
   <h2 class="text-4xl font-semibold mb-8">
-    New Score Card
+    Score Card
   </h2>
 
   <Message

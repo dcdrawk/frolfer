@@ -14,6 +14,8 @@ const courseTypeMap = {
 }
 
 const courseTypeText = computed(() => courseTypeMap[course.courseType])
+
+const emit = defineEmits(['startCourse'])
 </script>
 
 <template>
@@ -35,6 +37,7 @@ const courseTypeText = computed(() => courseTypeMap[course.courseType])
         <Button
           label="Start Scoring!"
           class="w-full"
+          @click="emit('startCourse')"
         />
       </div>
     </template>
