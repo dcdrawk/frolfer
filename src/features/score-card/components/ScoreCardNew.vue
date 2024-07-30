@@ -59,7 +59,7 @@ const handleCreateScoreCard = () => {
 </script>
 
 <template>
-  <h2 class="text-4xl font-semibold mb-8">
+  <h2 class="text-3xl font-semibold mb-8">
     New Score Card
   </h2>
 

@@ -18,26 +18,27 @@
       </strong>
     </p>
 
-    <Button
-      as="router-link"
-      to="/score-card/new"
-      label="Start a Score Card"
-    />
-
-    <span class="block my-4">
-      Or
-    </span>
-
-    <Button
-      as="router-link"
-      to="/score-card/list"
-      label="View Score Cards"
-      severity="secondary"
-    />
-
-    <!-- <h2>
-      Select from your
-    </h2> -->
+    <div class="flex flex-col w-[300px] mx-auto">
+      <Button
+        as="router-link"
+        to="/score-card/list"
+        label="My Score Cards"
+        severity="secondary"
+        class="mb-4"
+      />
+      <Button
+        as="router-link"
+        to="/score-card/list"
+        label="My Courses"
+        severity="secondary"
+        class="mb-4"
+      />
+      <Button
+        as="router-link"
+        to="/score-card/new"
+        label="New Score Card"
+      />
+    </div>
   </section>
 </template>
 

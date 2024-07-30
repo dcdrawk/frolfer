@@ -16,6 +16,12 @@ export const useScoreCardStore = defineStore('scoreCard', {
 
       return newScoreCard
     },
+
+    delete (scoreCardId: string) {
+      const index = this.scoreCards.findIndex((scoreCard => scoreCard.id === scoreCardId))
+      this.scoreCards.splice(index, 1)
+    },
+
     setActiveId (id: string) {
       this.activeId = id
     },

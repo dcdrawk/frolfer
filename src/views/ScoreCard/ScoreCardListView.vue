@@ -5,10 +5,10 @@
   <section class="container mx-auto py-8 px-4">
     <AppBreadcrumbs
       :items="[
-        { label: 'New Score Card' },
+        { label: 'My Score Cards' },
       ]"
     />
-    <ScoreCardNew />
+    <ScoreCardList />
   </section>
 </template>
 

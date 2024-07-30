@@ -23,8 +23,6 @@ const scoreData = computed(() => {
 
 const scoreColumns = computed(() => {
   if (!activeScoreCard.value?.scores.length) {
-    // return []
-
     const columns = activeCourse.value?.holes.map<string>((_, index) => {
       return String(index + 1)
     })
@@ -109,6 +107,25 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
   menuRefs.value[rowIndex].toggle(event)
   activeRow.value = rowIndex
 }
+
+const getHeaderClass = (col: string) => {
+  switch (col) {
+    case ('name'):
+      return 'min-w-[150px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]'
+    case ('total'):
+      return 'min-w-[125px]'
+    default:
+  }
+}
+
+const getBodyClass = (col: string) => {
+  switch (col) {
+    case 'name':
+      return 'outline outline-2 outline-[--p-datatable-header-cell-background]'
+    default:
+  }
+}
+
 </script>
 
 <template>
@@ -131,13 +148,8 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
       :field="col.toString()"
       class="text-center"
       :frozen="col === 'name'"
-      :header-class="{
-        'min-w-[150px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]': col === 'name',
-        'min-w-[125px]': col === 'total'
-      }"
-      :body-class="{
-        'outline outline-2 outline-[--p-datatable-header-cell-background]': col === 'name'
-      }"
+      :header-class="getHeaderClass(col)"
+      :body-class="getBodyClass(col)"
     >
       <template #header>
         <span v-if="col === 'name'">

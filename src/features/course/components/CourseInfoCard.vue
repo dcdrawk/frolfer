@@ -19,7 +19,7 @@ const emit = defineEmits(['startCourse'])
 </script>
 
 <template>
-  <Card style="">
+  <Card>
     <template #title>
       {{ course.name }}
     </template>

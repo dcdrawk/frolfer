@@ -23,7 +23,7 @@ if (activeScoreCard && activeCourseId !== activeScoreCard.value?.courseId) {
 </script>
 
 <template>
-  <h2 class="text-4xl font-semibold mb-4">
+  <h2 class="text-3xl font-semibold mb-4">
     Score Card
   </h2>
 
