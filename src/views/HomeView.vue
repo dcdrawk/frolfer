@@ -3,7 +3,10 @@
 
 <template>
   <section class="container mx-auto text-center pt-20">
-    <h1 class="text-5xl font-semibold mb-5">
+    <p>
+      Welcome to
+    </p>
+    <h1 class="text-5xl font-semibold my-5">
       Frolfer 🥏
     </h1>
     <p
@@ -20,6 +23,21 @@
       to="/score-card/new"
       label="Start a Score Card"
     />
+
+    <span class="block my-4">
+      Or
+    </span>
+
+    <Button
+      as="router-link"
+      to="/score-card/list"
+      label="View Score Cards"
+      severity="secondary"
+    />
+
+    <!-- <h2>
+      Select from your
+    </h2> -->
   </section>
 </template>
 

@@ -50,9 +50,6 @@ const handleCreateScoreCard = () => {
     id: '',
     courseId: selectedCourseId.value,
     players: [],
-    // scores: [{
-    //   name: '',
-    // }],
     scores: defaultScores.value,
     date: new Date().toLocaleDateString(),
   })

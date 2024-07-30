@@ -92,7 +92,7 @@ const handleAddRow = () => {
 
 const menuRefs = ref<MenuItem>([])
 
-const items = ref([
+const menuItems = ref([
   {
     label: 'Delete Row',
     icon: 'pi pi-trash',
@@ -122,20 +122,21 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
       table: { style: 'border-collapse: separate;' },
     }"
     class="-mx-4"
+    striped-rows
   >
     <Column
-      v-for="(col, index) in scoreColumns"
+      v-for="(col) in scoreColumns"
       :key="col"
       :index="col"
       :field="col.toString()"
-      class="capitalize text-center"
+      class="text-center"
       :frozen="col === 'name'"
-      :style="col === 'name' ? 'max-width: 150px;' : 'max-width: 125px;'"
-      :header-style="col === 'name' ? 'min-width: 150px; border-right: 1px solid var(--p-datatable-row-background);' : 'min-width: 85px;'"
-      :pt="{
-        columnTitle: col !== 'name' ? { style: 'width: 100%; text-align: center;' }: {},
-        headerCell: { style: 'background: var(--p-datatable-header-cell-background); border-left: 1px solid var(--p-datatable-header-cell-background);' },
-        bodyCell: index === 0 && { style: 'outline: 1px solid var(--p-datatable-header-cell-background); border-left: none; border-right: none;' }
+      :header-class="{
+        'min-w-[150px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]': col === 'name',
+        'min-w-[125px]': col === 'total'
+      }"
+      :body-class="{
+        'outline outline-2 outline-[--p-datatable-header-cell-background]': col === 'name'
       }"
     >
       <template #header>
@@ -208,7 +209,7 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
             :id="`overlay_menu_${rowIndex}`"
             :ref="`menuRefs`"
             popup
-            :model="items"
+            :model="menuItems"
           />
         </span>
       </template>
