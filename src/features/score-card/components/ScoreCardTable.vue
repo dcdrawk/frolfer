@@ -1,66 +1,233 @@
 <script setup lang="ts">
+import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { useScoreCardStore } from '../store/useScoreCardStore'
+import { IScore } from '../types'
+import { MenuItem } from 'primevue/menuitem'
 
-// const route = useRoute()
 const scoreCardStore = useScoreCardStore()
-// const { activeId: activeScoreCardId, setActiveId: setActiveScoreCardId } = scoreCardStore
 const { activeScoreCard } = storeToRefs(scoreCardStore)
 
 const coursesStore = useCoursesStore()
-// const { activeId: activeCourseId, setActiveId: setActiveCourseId } = coursesStore
 const { activeCourse } = storeToRefs(coursesStore)
 
-// const scoreData = computed(() => {
-//   if (!activeScoreCard.value) {
-//     return {}
-//   }
+const activeRow = ref<number | null>(null)
 
-//   return activeScoreCard.value.scores
-//   //
-// })
+const scoreData = computed(() => {
+  if (!activeScoreCard.value) {
+    return []
+  }
 
-// console.log(scoreData)
+  return activeScoreCard.value.scores
+})
+
+const scoreColumns = computed(() => {
+  if (!activeScoreCard.value?.scores.length) {
+    // return []
+
+    const columns = activeCourse.value?.holes.map<string>((_, index) => {
+      return String(index + 1)
+    })
+
+    columns?.push('total')
+    columns?.unshift('name')
+    return columns
+  }
+
+  const keys = Object.keys(activeScoreCard.value?.scores[0])
+
+  return keys.sort((a, b) => {
+    if (a === 'name') return -1
+    if (b === 'name') return 1
+    if (a === 'total') return 1
+    if (b === 'total') return -1
+    return a.localeCompare(b)
+  })
+})
+
+const handleScoreInput = (event: InputNumberInputEvent, rowIndex: number, holeNumber: string) => {
+  if (!activeScoreCard.value) return
+
+  activeScoreCard.value.scores[rowIndex][holeNumber] = event.value as number
+}
+
+const getRowTotal = (rowData: IScore) => {
+  let total = 0
+
+  for (const key in rowData) {
+    if (key === 'name' || key === 'total') continue
+    if (typeof rowData[key] === 'number') {
+      total += rowData[key]
+    }
+  }
+
+  return total
+}
+
+const activeCourseParTotal = computed(() => {
+  if (!activeCourse.value) return 0
+
+  return activeCourse.value.holes.reduce((accumulator, currentValue) => accumulator + currentValue.par, 0)
+})
+
+const defaultScore = computed(() => {
+  const scoreObject: IScore = {
+    name: '',
+    total: null,
+  }
+
+  if (!activeCourse.value) return scoreObject
+
+  for (let i = 1; i < activeCourse.value.numberOfHoles + 1; i++) {
+    scoreObject[i] = null
+  }
+  return scoreObject
+})
+
+const handleAddRow = () => {
+  if (!activeScoreCard.value) return
+
+  activeScoreCard.value.scores.push({ ...defaultScore.value })
+}
+
+const menuRefs = ref<MenuItem>([])
+
+const items = ref([
+  {
+    label: 'Delete Row',
+    icon: 'pi pi-trash',
+    command: () => {
+      if (!activeRow.value && activeRow.value !== 0) return
+      if (window.confirm('Are you sure you want to delete this row?')) {
+        activeScoreCard.value?.scores.splice(activeRow.value, 1)
+      }
+    },
+  },
+])
+
+const handleMenuClick = (event: Event, rowIndex: number) => {
+  menuRefs.value[rowIndex].toggle(event)
+  activeRow.value = rowIndex
+}
 </script>
 
 <template>
   <DataTable
     v-if="activeScoreCard && activeCourse"
-    :value="Object.values(activeScoreCard.scores)"
-    edit-mode="cell"
+    :value="scoreData"
+    show-gridlines
+    scrollable
+    style="border-collapse: separate;"
+    :pt="{
+      table: { style: 'border-collapse: separate;' },
+    }"
+    class="-mx-4"
   >
-    <!-- @cell-edit-complete="onCellEditComplete" -->
     <Column
-      v-for="col in activeCourse.numberOfHoles"
+      v-for="(col, index) in scoreColumns"
       :key="col"
       :index="col"
-      :header="`Hole ${col.toString()}`"
+      :field="col.toString()"
+      class="capitalize text-center"
+      :frozen="col === 'name'"
+      :style="col === 'name' ? 'max-width: 150px;' : 'max-width: 125px;'"
+      :header-style="col === 'name' ? 'min-width: 150px; border-right: 1px solid var(--p-datatable-row-background);' : 'min-width: 85px;'"
+      :pt="{
+        columnTitle: col !== 'name' ? { style: 'width: 100%; text-align: center;' }: {},
+        headerCell: { style: 'background: var(--p-datatable-header-cell-background); border-left: 1px solid var(--p-datatable-header-cell-background);' },
+        bodyCell: index === 0 && { style: 'outline: 1px solid var(--p-datatable-header-cell-background); border-left: none; border-right: none;' }
+      }"
     >
-      <template #body="{ index }">
-        {{ index }}
-        <!-- {{ field === 'price' ? formatCurrency(data[field]) : data[field] }} -->
+      <template #header>
+        <span v-if="col === 'name'">
+          {{ col }}
+        </span>
+        <span
+          v-else-if="col !== 'total'"
+          class=""
+        >
+          Hole {{ col }}
+          <span
+            v-if="activeCourse"
+            class="block text-muted-color"
+          >
+            Par {{ activeCourse.holes[parseInt(col) - 1]?.par }}
+          </span>
+        </span>
+        <span
+          v-else
+          class="w-[50px]"
+        >
+          Total
+          <span
+            v-if="activeCourse"
+            class="block text-muted-color"
+          >
+            Par {{ activeCourseParTotal }}
+          </span>
+        </span>
       </template>
-      <!-- <template #editor="{ data, field }">
-        <template v-if="field !== 'price'">
-          <InputText
-            v-model="data[field]"
-            autofocus
-            fluid
-          />
-        </template>
-        <template v-else>
+      <template #body="{ data, field, index: rowIndex }">
+        <InputText
+          v-if="col === 'name'"
+          v-model="data[field]"
+          autofocus
+          class="block min-w-[100px]"
+          fluid
+        />
+        <span
+          v-else-if="col !== 'total'"
+        >
           <InputNumber
             v-model="data[field]"
-            mode="currency"
-            currency="USD"
-            locale="en-US"
-            autofocus
+            class="block min-w-[50px] m-auto !static"
+            input-class="text-center"
             fluid
+            :pt="{
+              pcInput: {style: 'text-align: center'}
+            }"
+            @input="handleScoreInput($event, rowIndex, col.toString())"
           />
-        </template>
-      </template> -->
+        </span>
+        <span
+          v-else
+          class="flex flex-row items-center justify-between"
+        >
+          {{ getRowTotal(data) }}
+          <Button
+            type="button"
+            icon="pi pi-ellipsis-v"
+            aria-haspopup="true"
+            aria-controls="overlay_menu"
+            severity="secondary"
+            text
+            class="-mr-2 ml-4"
+            @click="handleMenuClick($event, rowIndex)"
+          />
+          <Menu
+            :id="`overlay_menu_${rowIndex}`"
+            :ref="`menuRefs`"
+            popup
+            :model="items"
+          />
+        </span>
+      </template>
     </Column>
   </DataTable>
+
+  <div class="flex flex-row gap-4">
+    <Button
+      label="Add Row"
+      class="mt-4 block"
+      severity="secondary"
+      @click="handleAddRow"
+    />
+    <Button
+      label="Complete Game"
+      class="mt-4 block"
+      @click="handleAddRow"
+    />
+  </div>
 </template>
 
 <style scoped>

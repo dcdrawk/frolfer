@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { useScoreCardStore } from '../store/useScoreCardStore'
+import { IScore } from '../types'
 
 const router = useRouter()
 const { courses } = useCoursesStore()
@@ -28,6 +29,20 @@ const courseSelectOptions = computed(() => {
 
 const isNewCourse = computed(() => selectedCourseId.value === 'new' || courses.length === 0)
 
+const defaultScores = computed(() => {
+  const scoreObject: IScore = {
+    name: '',
+    total: null,
+  }
+
+  if (!selectedCourse.value) return [scoreObject]
+
+  for (let i = 1; i < selectedCourse.value.numberOfHoles + 1; i++) {
+    scoreObject[i] = null
+  }
+  return [scoreObject]
+})
+
 const handleCreateScoreCard = () => {
   if (!selectedCourseId.value) return
 
@@ -35,7 +50,10 @@ const handleCreateScoreCard = () => {
     id: '',
     courseId: selectedCourseId.value,
     players: [],
-    scores: {},
+    // scores: [{
+    //   name: '',
+    // }],
+    scores: defaultScores.value,
     date: new Date().toLocaleDateString(),
   })
 

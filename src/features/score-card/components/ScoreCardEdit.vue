@@ -37,38 +37,5 @@ if (activeScoreCard && activeCourseId !== activeScoreCard.value?.courseId) {
     </span>
   </h3>
 
-  <Message
-    severity="info"
-  >
-    Welcome to score card {{ scoreCardStore.activeId }}
-  </Message>
-
   <ScoreCardTable />
-
-  <!-- <div class="flex flex-col max-w-[420px]">
-    <div>
-      <label class="block mb-2">
-        Select a Course
-      </label>
-      <Select
-        v-model="selectedCourseId"
-        :options="courseSelectOptions"
-        option-label="text"
-        option-value="value"
-        class="mb-8 w-full"
-      />
-    </div>
-
-    <CourseInfoCard
-      v-if="selectedCourse"
-      :course="selectedCourse"
-    >
-      <Button
-        v-if="!isNewCourse"
-        label="Start Scoring!"
-      />
-    </courseinfocard>
-  </div>
-
-  <CourseForm v-if="isNewCourse" /> -->
 </template>
