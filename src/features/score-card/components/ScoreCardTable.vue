@@ -138,7 +138,7 @@ const getBodyClass = (col: string) => {
     :pt="{
       table: { style: 'border-collapse: separate;' },
     }"
-    class="-mx-4"
+    class="-mx-4 md:mx-0"
     striped-rows
   >
     <Column

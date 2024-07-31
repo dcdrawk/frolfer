@@ -35,7 +35,7 @@ const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) =
 
 <template>
   <h1 class="text-3xl font-semibold mb-4">
-    My Score Cards
+    Score Cards
   </h1>
 
   <section v-if="scoreCards">

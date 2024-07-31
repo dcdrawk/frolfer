@@ -50,7 +50,18 @@ const courseTypeMap = {
       v-if="course"
       #subtitle
     >
-      {{ courseTypeMap[course.courseType] }}
+      <div class="flex justify-between items-center">
+        <!-- <span>
+          {{ courseTypeMap[course.courseType] }}
+        </span> -->
+        <Tag
+          :value="courseTypeMap[course.courseType]"
+          severity="info"
+        />
+        <span>
+          {{ course.numberOfHoles }} Holes
+        </span>
+      </div>
     </template>
     <template #content>
       <div v-if="playerNames.length">

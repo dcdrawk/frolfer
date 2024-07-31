@@ -2,12 +2,12 @@
 </script>
 
 <template>
+  <!-- <AppBreadcrumbs
+    :items="[
+      { label: 'New Score Card' },
+    ]"
+  /> -->
   <section class="container mx-auto py-8 px-4">
-    <AppBreadcrumbs
-      :items="[
-        { label: 'New Score Card' },
-      ]"
-    />
     <ScoreCardNew />
   </section>
 </template>

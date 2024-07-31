@@ -3,11 +3,11 @@
 
 <template>
   <section class="container mx-auto py-8 px-4">
-    <AppBreadcrumbs
+    <!-- <AppBreadcrumbs
       :items="[
         { label: 'My Score Cards' },
       ]"
-    />
+    /> -->
     <ScoreCardList />
   </section>
 </template>

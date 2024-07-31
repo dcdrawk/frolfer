@@ -36,8 +36,11 @@ const home = ref({
           v-bind="props.action"
           @click="navigate"
         >
-          <span :class="[item.icon, 'text-color']" />
-          <span class="text-primary font-semibold">
+          <span
+            v-if="item.icon"
+            :class="[item.icon, 'text-color']"
+          />
+          <span>
             {{ item.label }}
           </span>
         </a>
@@ -49,7 +52,7 @@ const home = ref({
         v-bind="props.action"
       >
         <span class="text-surface-700 dark:text-surface-0">
-          {{ item.label }}
+          !Hackers Haven  {{ item.label }}
         </span>
       </a>
     </template>
