@@ -50,11 +50,9 @@ const courseTypeMap = {
       v-if="course"
       #subtitle
     >
-      <div class="flex justify-between items-center">
-        <!-- <span>
-          {{ courseTypeMap[course.courseType] }}
-        </span> -->
+      <div class="flex items-center">
         <Tag
+          class="mr-2"
           :value="courseTypeMap[course.courseType]"
           severity="info"
         />
@@ -64,39 +62,20 @@ const courseTypeMap = {
       </div>
     </template>
     <template #content>
-      <div v-if="playerNames.length">
-        <span
+      <div
+        v-if="playerNames.length"
+        class="flex flex-wrap gap-1"
+      >
+        <Chip
           v-for="(name, index) in playerNames"
           :key="index"
+          class=""
+          :label="name"
         >
-          {{ name }}{{ index < (playerNames.length - 1) ? ', ' : '' }}
-        </span>
+          <!-- {{ name }}{{ index < (playerNames.length - 1) ? ', ' : '' }} -->
+        </Chip>
       </div>
-      <!-- {{ courseTypeText }} -->
     </template>
-    <!-- <template #content>
-      <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-        quas!
-      </p>
-    </template> -->
-    <!-- <template #footer>
-      <div class="flex gap-4 mt-1">
-        <Button
-          label="View Score Card"
-          class="w-full"
-          severity="secondary"
-          @click="emit('startCourse')"
-        />
-        <Button
-          icon="pi pi-trash"
-          class="!w-[50px]"
-          outlined
-          severity="danger"
-          @click="emit('startCourse')"
-        />
-      </div>
-    </template> -->
   </Card>
 </template>
 

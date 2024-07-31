@@ -87,11 +87,17 @@ const handleCreateScoreCard = () => {
       />
     </div>
 
-    <CourseInfoCard
-      v-if="selectedCourse"
-      :course="selectedCourse"
-      @start-course="handleCreateScoreCard"
-    />
+    <div v-if="selectedCourse">
+      <CourseInfoCard
+        :course="selectedCourse"
+      />
+
+      <Button
+        class="mt-8"
+        label="Start Score Card"
+        @click="handleCreateScoreCard"
+      />
+    </div>
   </div>
 
   <CourseForm v-if="isNewCourse" />

@@ -3,9 +3,9 @@ const drawerVisible = ref(false)
 </script>
 
 <template>
-  <AppToolbar @menu-button-click="drawerVisible = true" />
+  <AppToolbar @menu-button-click="drawerVisible = !drawerVisible" />
   <AppDrawer
-    :visible="drawerVisible"
+    :foo="drawerVisible"
     @close="drawerVisible = false"
   />
   <slot />

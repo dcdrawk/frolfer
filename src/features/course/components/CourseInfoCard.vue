@@ -15,7 +15,7 @@ const courseTypeMap = {
 
 const courseTypeText = computed(() => courseTypeMap[course.courseType])
 
-const emit = defineEmits(['startCourse'])
+// const emit = defineEmits(['startCourse'])
 </script>
 
 <template>
@@ -23,22 +23,17 @@ const emit = defineEmits(['startCourse'])
     <template #title>
       {{ course.name }}
     </template>
-    <template #subtitle>
-      {{ courseTypeText }}
-    </template>
-    <!-- <template #content>
-      <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-        quas!
-      </p>
-    </template> -->
-    <template #footer>
-      <div class="flex gap-4 mt-1">
-        <Button
-          label="Start Scoring!"
-          class="w-full"
-          @click="emit('startCourse')"
+    <template #content>
+      <!-- {{ courseTypeText }} -->
+      <div class="flex items-center">
+        <Tag
+          class="mr-2"
+          :value="courseTypeText"
+          severity="info"
         />
+        <span class="text-muted-color">
+          {{ course.numberOfHoles }} Holes
+        </span>
       </div>
     </template>
   </Card>
