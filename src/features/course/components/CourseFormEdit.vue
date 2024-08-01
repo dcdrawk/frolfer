@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { InputNumberInputEvent } from 'primevue/inputnumber'
 import type { SelectChangeEvent } from 'primevue/select'
-import type { ICourse } from '../types'
+import type { ICourse, IHole } from '../types'
 import { CourseType } from '../types'
 import { Form } from 'vee-validate'
 import { holeTemplate, courseTypeOptions } from '../utils/courseUtils'
 
 const { course, title, submitLabel } = defineProps<{
-  course: ICourse
+  course?: ICourse
   submitLabel?: string
   title?: string
 }>()
@@ -16,22 +16,28 @@ const emit = defineEmits<{
   submit: [ICourse]
 }>()
 
+const courseRef = toRef(course)
+
 const { value: courseName, errorMessage, validate } = useField<string>('courseName', 'required')
 
-watch(course, (newValue) => {
-  if (!course.id) return
-  if (newValue.name) courseName.value = newValue.name
+watch(courseRef, (newValue) => {
+  if (!course?.id) return
+  if (newValue?.name) courseName.value = newValue.name
 }, { immediate: true })
 
-const numberOfHoles = toRef(course.numberOfHoles)
-const courseType = toRef(course.courseType)
-const holes = toRef(course.holes)
+const numberOfHoles = toRef(course?.numberOfHoles ?? 9)
+const courseType = toRef(course?.courseType ?? CourseType.PAR_THREE)
+const holes = toRef<IHole[]>(course?.holes ?? new Array(numberOfHoles.value).fill({
+  par: 3,
+}).map(item => ({
+  ...item,
+})))
 
 watch(numberOfHoles, (newValue, oldValue) => {
-  if (!oldValue) return
+  if (!oldValue || !newValue) return
 
   if (newValue > oldValue) {
-    holes.value = holes.value
+    holes.value = holes?.value
       .slice(0, newValue)
       .concat([...new Array(newValue - oldValue)
         .fill(holeTemplate, 0, newValue - oldValue)
@@ -104,7 +110,7 @@ const handleSubmit = async () => {
     emit('submit', {
       courseType: courseType.value,
       holes: holes.value,
-      id: course.id,
+      id: course?.id ?? '',
       name: courseName.value,
       numberOfHoles: numberOfHoles.value,
     })
@@ -119,15 +125,15 @@ const handleSubmit = async () => {
       @submit="handleSubmit"
       @invalid-submit="handleSubmit"
     >
-      <div class="max-w-[420px] pt-4">
+      <div class="max-w-[420px]">
         <h3
           v-if="title"
-          class="text-2xl font-semibold mb-10"
+          class="text-3xl font-semibold mb-10"
         >
           {{ title }}
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <FloatLabel class="mb-8 w-full col-span-2">
+          <FloatLabel class="w-full col-span-2">
             <label
               for="courseName"
             >
@@ -168,25 +174,23 @@ const handleSubmit = async () => {
           </div>
 
           <div class="col-span-1">
-            <div class="mb-4">
-              <label
-                for="numberOfHoles"
-                class="block mb-2"
-              >
-                Number of Holes
-              </label>
+            <label
+              for="numberOfHoles"
+              class="block mb-2"
+            >
+              Number of Holes
+            </label>
 
-              <InputNumber
-                v-model="numberOfHoles"
-                input-id="numberOfHoles"
-                show-buttons
-                button-layout="horizontal"
-                :step="1"
-                :min="1"
-                :max="50"
-                fluid
-              />
-            </div>
+            <InputNumber
+              v-model="numberOfHoles"
+              input-id="numberOfHoles"
+              show-buttons
+              button-layout="horizontal"
+              :step="1"
+              :min="1"
+              :max="50"
+              fluid
+            />
           </div>
         </div>
       </div>

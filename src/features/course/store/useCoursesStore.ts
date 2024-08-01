@@ -7,10 +7,14 @@ export const useCoursesStore = defineStore('courses', {
   }),
   actions: {
     create (course: ICourse) {
-      this.courses.push({
+      const newCourse = {
         ...course,
         id: crypto.randomUUID(),
-      })
+      }
+
+      this.courses.push(newCourse)
+
+      return newCourse
     },
     setActiveId (courseId: string) {
       this.activeId = courseId

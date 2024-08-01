@@ -13,7 +13,7 @@ const emit = defineEmits<{
   'input-par': [event: InputNumberInputEvent, hole: number],
 }>()
 
-const accordionState = ref(['0'])
+const accordionState = ref([])
 
 </script>
 

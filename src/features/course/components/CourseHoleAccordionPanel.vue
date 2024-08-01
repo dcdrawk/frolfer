@@ -30,7 +30,7 @@ const emit = defineEmits<{
     <AccordionHeader>
       <div class="w-full flex justify-between">
         <div>
-          Hole {{ hole }}{{ name ? ` - ${name}` : '' }}
+          Hole {{ hole + 1 }}{{ name ? ` - ${name}` : '' }}
         </div>
         <div class="text-emerald-500 mr-4">
           <Tag

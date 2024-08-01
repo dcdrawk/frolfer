@@ -64,16 +64,14 @@ const courseTypeMap = {
     <template #content>
       <div
         v-if="playerNames.length"
-        class="flex flex-wrap gap-1"
+        class="flex flex-wrap gap-2"
       >
         <Chip
           v-for="(name, index) in playerNames"
           :key="index"
           class=""
           :label="name"
-        >
-          <!-- {{ name }}{{ index < (playerNames.length - 1) ? ', ' : '' }} -->
-        </Chip>
+        />
       </div>
     </template>
   </Card>

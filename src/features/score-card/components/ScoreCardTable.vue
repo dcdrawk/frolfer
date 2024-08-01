@@ -25,21 +25,21 @@ const scoreColumns = computed(() => {
   if (!activeScoreCard.value?.scores.length) {
     const columns = activeCourse.value?.holes.map<string>((_, index) => {
       return String(index + 1)
-    })
+    }).sort((a, b) => parseInt(a) - parseInt(b))
 
     columns?.push('total')
     columns?.unshift('name')
     return columns
   }
 
-  const keys = Object.keys(activeScoreCard.value?.scores[0])
+  const keys = Object.keys(activeScoreCard.value?.scores[0]).sort((a, b) => parseInt(a) - parseInt(b))
 
   return keys.sort((a, b) => {
     if (a === 'name') return -1
     if (b === 'name') return 1
     if (a === 'total') return 1
     if (b === 'total') return -1
-    return a.localeCompare(b)
+    return parseInt(a) - parseInt(b)
   })
 })
 
@@ -111,10 +111,11 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
 const getHeaderClass = (col: string) => {
   switch (col) {
     case ('name'):
-      return 'min-w-[150px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]'
+      return 'capitalize min-w-[140px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]'
     case ('total'):
       return 'min-w-[125px]'
     default:
+      return 'min-w-[90px]'
   }
 }
 

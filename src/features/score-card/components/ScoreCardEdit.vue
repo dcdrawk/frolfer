@@ -29,9 +29,11 @@ if (activeScoreCard && activeCourseId !== activeScoreCard.value?.courseId) {
 
   <h3
     v-if="activeCourse && activeScoreCard"
-    class="text-2xl font-semibold mb-4"
+    class="text-2xl mb-4 flex justify-between"
   >
-    {{ activeCourse.name }}
+    <span class="font-semibold">
+      {{ activeCourse.name }}
+    </span>
     <span class="ml-2 opacity-60">
       {{ activeScoreCard.date }}
     </span>
