@@ -1,10 +1,12 @@
 <script setup lang="ts">
 // import router from '../../../router'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
+import { ICourse } from '../types'
 // import { useScoreCardStore } from '../store/useScoreCardStore'
 
 // const { scoreCards, delete: deleteScoreCard } = useScoreCardStore()
 const { courses } = useCoursesStore()
+const router = useRouter()
 
 // const selectedCard = ref<IScoreCard | null>(null)
 // const selectedCardIndex = ref<number | null>(null)
@@ -21,6 +23,10 @@ const items = ref([
     // },
   },
 ])
+
+const handleCourseClick = (course: ICourse) => {
+  router.push(`/course/${course.id}`)
+}
 
 // const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) => {
 //   menu.value.show(event)
@@ -41,7 +47,10 @@ const items = ref([
       <CourseInfoCard
         v-for="course in courses"
         :key="course.id"
+        v-ripple
         :course="course"
+        clickable
+        @click="handleCourseClick(course)"
       />
 
       <ContextMenu

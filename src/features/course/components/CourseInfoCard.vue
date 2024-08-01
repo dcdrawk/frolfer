@@ -2,10 +2,11 @@
 import { CourseType, ICourse } from '../types'
 
 interface IProps {
+  clickable?: boolean
   course: ICourse
 }
 
-const { course } = defineProps<IProps>()
+const { course, clickable } = defineProps<IProps>()
 
 const courseTypeMap = {
   [CourseType.PAR_THREE]: 'Par 3',
@@ -15,11 +16,14 @@ const courseTypeMap = {
 
 const courseTypeText = computed(() => courseTypeMap[course.courseType])
 
-// const emit = defineEmits(['startCourse'])
+const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <Card>
+  <Card
+    :class="{'cursor-pointer': clickable}"
+    @click="emit('click')"
+  >
     <template #title>
       {{ course.name }}
     </template>

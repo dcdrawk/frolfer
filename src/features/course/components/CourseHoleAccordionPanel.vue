@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { CourseType } from '../types'
+import { parBgColorMap } from '../utils/courseUtils'
 
 const {
   hole,
@@ -12,7 +14,12 @@ const {
   courseType: CourseType
 }>()
 
-const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
+// const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
+const emit = defineEmits<{
+  'input-name': [event: Event, hole: number],
+  'input-distance': [event: Event, hole: number],
+  'input-par': [event: InputNumberInputEvent, hole: number],
+}>()
 </script>
 
 <template>
@@ -26,14 +33,17 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
           Hole {{ hole }}{{ name ? ` - ${name}` : '' }}
         </div>
         <div class="text-emerald-500 mr-4">
-          {{ par ? `Par ${par}` : '' }}
+          <Tag
+            :value="par ? `Par ${par}` : ''"
+            :class="parBgColorMap[par]"
+          />
         </div>
       </div>
     </AccordionHeader>
 
     <AccordionContent>
-      <div class="flex items-center">
-        <FloatLabel class="my-4 mr-4">
+      <div class="grid gap gap-4 gap-y-8 grid-cols-2 items-center">
+        <FloatLabel class="col-span-2 mt-4">
           <label
             :for="`hole-${hole}-name`"
             class="mb-2 block"
@@ -42,16 +52,18 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
           </label>
           <InputText
             :id="`hole-${hole}-name`"
+            class="w-full"
             :model-value="name"
-            @input="emit('input-name', $event)"
+            @input="emit('input-name', $event, hole)"
           />
         </FloatLabel>
 
-        <FloatLabel class="my-4 mr-4">
+        <FloatLabel class="col-span-1">
           <InputText
             :id="`hole-${hole}-distance`"
+            class="w-full"
             :model-value="distance"
-            @input="emit('input-distance', $event)"
+            @input="emit('input-distance', $event, hole)"
           />
           <label
             :for="`hole-${hole}-distance`"
@@ -61,7 +73,7 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
           </label>
         </FloatLabel>
 
-        <FloatLabel class="my-4 mr-4">
+        <FloatLabel class="col-span-1">
           <label
             :for="`hole-${hole}-par`"
             class="mb-2 block"
@@ -69,14 +81,17 @@ const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
             Par
           </label>
           <InputNumber
+            class="w-full"
+            input-class="w-full"
             :input-id="`hole-${hole}-par`"
             :model-value="par"
             :show-buttons="courseType === CourseType.VARIABLE_PAR"
             :disabled="courseType !== CourseType.VARIABLE_PAR"
             button-layout="horizontal"
             :step="1"
-            :min="1"
-            @input="emit('input-par', $event)"
+            :min="2"
+            :max="6"
+            @input="emit('input-par', $event, hole)"
           />
         </FloatLabel>
       </div>

@@ -28,7 +28,7 @@
       />
       <Button
         as="router-link"
-        to="/score-card/list"
+        to="/course/list"
         label="My Courses"
         severity="secondary"
         class="mb-4"

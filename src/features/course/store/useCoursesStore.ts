@@ -15,6 +15,9 @@ export const useCoursesStore = defineStore('courses', {
     setActiveId (courseId: string) {
       this.activeId = courseId
     },
+    updateCourse (updatedCourse: ICourse) {
+      this.courses = this.courses.map(course => course.id === updatedCourse.id ? updatedCourse : course)
+    },
   },
   getters: {
     activeCourse (state) {
