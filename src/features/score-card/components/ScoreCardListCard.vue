@@ -5,7 +5,7 @@ import { IScoreCard } from '../types'
 interface IProps {
   scoreCard: IScoreCard
   courses: ICourse []
-  onRightClick: (event: Event, scoreCard: IScoreCard, index: number) => void
+  onRightClick: (event: Event, scoreCard: IScoreCard) => void
 }
 
 const { scoreCard, courses, onRightClick } = defineProps<IProps>()
@@ -25,7 +25,6 @@ const courseTypeMap = {
   [CourseType.PAR_FOUR]: 'Par 4',
   [CourseType.VARIABLE_PAR]: 'Variable Par',
 }
-
 </script>
 
 <template>
@@ -76,7 +75,3 @@ const courseTypeMap = {
     </template>
   </Card>
 </template>
-
-<style scoped>
-
-</style>

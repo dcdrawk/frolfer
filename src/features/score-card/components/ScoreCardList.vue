@@ -9,7 +9,6 @@ const { scoreCards, delete: deleteScoreCard } = useScoreCardStore()
 const { courses } = useCoursesStore()
 
 const selectedCard = ref<IScoreCard | null>(null)
-const selectedCardIndex = ref<number | null>(null)
 
 const menu = ref()
 const items = ref([
@@ -24,12 +23,9 @@ const items = ref([
   },
 ])
 
-const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) => {
+const onScoreCardRightClick = (event: Event, scoreCard: IScoreCard) => {
   menu.value.show(event)
-  event.stopPropagation()
-  event.preventDefault()
   selectedCard.value = scoreCard
-  selectedCardIndex.value = index
 }
 </script>
 
@@ -41,11 +37,11 @@ const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) =
   <section v-if="scoreCards">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <ScoreCardListCard
-        v-for="(scoreCard, index) in scoreCards"
+        v-for="scoreCard in scoreCards"
         :key="scoreCard.id"
         :score-card="scoreCard"
         :courses="courses"
-        :on-right-click="(event) => onImageRightClick(event, scoreCard, index)"
+        :on-right-click="(event) => onScoreCardRightClick(event, scoreCard)"
         @click="router.push(`/score-card/${scoreCard.id}`)"
       />
 
@@ -56,7 +52,3 @@ const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) =
     </div>
   </section>
 </template>
-
-<style scoped>
-
-</style>

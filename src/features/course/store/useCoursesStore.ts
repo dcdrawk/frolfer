@@ -16,9 +16,16 @@ export const useCoursesStore = defineStore('courses', {
 
       return newCourse
     },
+
+    delete (courseId: string) {
+      const index = this.courses.findIndex((course => course.id === courseId))
+      this.courses.splice(index, 1)
+    },
+
     setActiveId (courseId: string) {
       this.activeId = courseId
     },
+
     updateCourse (updatedCourse: ICourse) {
       this.courses = this.courses.map(course => course.id === updatedCourse.id ? updatedCourse : course)
     },

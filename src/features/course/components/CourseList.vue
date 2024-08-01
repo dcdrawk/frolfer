@@ -1,26 +1,21 @@
 <script setup lang="ts">
-// import router from '../../../router'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { ICourse } from '../types'
-// import { useScoreCardStore } from '../store/useScoreCardStore'
-
-// const { scoreCards, delete: deleteScoreCard } = useScoreCardStore()
-const { courses } = useCoursesStore()
+const { courses, delete: deleteCourse } = useCoursesStore()
 const router = useRouter()
 
-// const selectedCard = ref<IScoreCard | null>(null)
-// const selectedCardIndex = ref<number | null>(null)
+const selectedCourse = ref<ICourse | null>(null)
 
 const menu = ref()
 const items = ref([
   {
     label: 'Delete',
     icon: 'pi pi-trash',
-    // command: () => {
-    //   if (!selectedCard.value) return
+    command: () => {
+      if (!selectedCourse.value) return
 
-    //   deleteScoreCard(selectedCard.value.id)
-    // },
+      deleteCourse(selectedCourse.value.id)
+    },
   },
 ])
 
@@ -28,13 +23,10 @@ const handleCourseClick = (course: ICourse) => {
   router.push(`/course/${course.id}`)
 }
 
-// const onImageRightClick = (event: Event, scoreCard: IScoreCard, index: number) => {
-//   menu.value.show(event)
-//   event.stopPropagation()
-//   event.preventDefault()
-//   selectedCard.value = scoreCard
-//   selectedCardIndex.value = index
-// }
+const handleCourseRightClick = (event: Event, course: ICourse) => {
+  menu.value.show(event)
+  selectedCourse.value = course
+}
 </script>
 
 <template>
@@ -51,6 +43,7 @@ const handleCourseClick = (course: ICourse) => {
         :course="course"
         clickable
         @click="handleCourseClick(course)"
+        @right-click="(event, course) => handleCourseRightClick(event, course)"
       />
 
       <ContextMenu
