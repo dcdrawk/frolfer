@@ -29,5 +29,6 @@ if (activeScoreCardId !== routeId) {
     </span>
   </h3>
 
-  <ScoreCardTable />
+  <!-- <ScoreCardTable /> -->
+  <ScoreCardTableEditable />
 </template>
