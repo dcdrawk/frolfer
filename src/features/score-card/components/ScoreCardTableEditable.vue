@@ -134,6 +134,7 @@ const getBodyClass = (col: string) => {
     case 'total':
       return 'pointer-events-none'
     default:
+      return 'md:max-w-[64px]'
   }
 }
 
@@ -236,17 +237,18 @@ const getBodyClass = (col: string) => {
           v-if="col === 'name'"
           v-model="data[field]"
           autofocus
-          class="block min-w-[100px] -my-2"
+          class="!block min-w-[100px] max-w-[200px] -my-2"
           fluid
           @input="handleNameInput($event, rowIndex, col.toString())"
         />
         <span
           v-else-if="col !== 'total'"
+          class="block max-w-[100px]"
         >
           <InputNumber
             v-model="data[field]"
-            class="block min-w-[50px] m-auto !static -my-2"
-            input-class="text-center"
+            class="!block min-w-[50px] max-w-[100px] !static -my-2"
+            input-class="text-center !w-full"
             fluid
             :pt="{
               pcInput: {style: 'text-align: center'}
