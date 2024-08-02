@@ -3,7 +3,10 @@
 
 <template>
   <section class="container mx-auto text-center pt-20">
-    <h1 class="text-5xl font-semibold mb-5">
+    <p>
+      Welcome to
+    </p>
+    <h1 class="text-5xl font-semibold my-5">
       Frolfer 🥏
     </h1>
     <p
@@ -15,12 +18,27 @@
       </strong>
     </p>
 
-    <Button
-      as="router-link"
-      to="/score-card/new"
-    >
-      Start a Score Card
-    </Button>
+    <div class="flex flex-col w-[300px] mx-auto">
+      <Button
+        as="router-link"
+        to="/score-card/list"
+        label="Score Cards"
+        severity="secondary"
+        class="mb-4"
+      />
+      <Button
+        as="router-link"
+        to="/course/list"
+        label="Courses"
+        severity="secondary"
+        class="mb-4"
+      />
+      <Button
+        as="router-link"
+        to="/score-card/new"
+        label="New Score Card"
+      />
+    </div>
   </section>
 </template>
 

@@ -3,7 +3,10 @@
 
 <template>
   <main>
-    <RouterView />
+    <!-- <AppToolbar /> -->
+    <AppShell>
+      <RouterView />
+    </AppShell>
   </main>
 </template>
 
