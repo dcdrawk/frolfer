@@ -123,7 +123,7 @@ const getHeaderClass = (col: string) => {
     case ('total'):
       return 'min-w-[125px]'
     default:
-      return 'min-w-[90px]'
+      return 'min-w-[95px]'
   }
 }
 
@@ -187,7 +187,7 @@ const getBodyClass = (col: string) => {
         </span>
         <span
           v-else
-          class="w-[50px]"
+          class="min-w-[50px]"
         >
           Total
           <span
@@ -265,11 +265,6 @@ const getBodyClass = (col: string) => {
       label="Add Row"
       class="mt-4 block"
       severity="secondary"
-      @click="handleAddRow"
-    />
-    <Button
-      label="Complete Game"
-      class="mt-4 block"
       @click="handleAddRow"
     />
   </div>

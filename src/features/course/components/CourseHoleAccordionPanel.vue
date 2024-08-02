@@ -28,7 +28,7 @@ const emit = defineEmits<{
     :value="hole.toString()"
   >
     <AccordionHeader>
-      <div class="w-full flex justify-between">
+      <div class="w-full flex items-center justify-between">
         <div>
           Hole {{ hole + 1 }}{{ name ? ` - ${name}` : '' }}
         </div>

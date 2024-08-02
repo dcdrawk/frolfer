@@ -4,7 +4,7 @@ const emit = defineEmits(['menuButtonClick'])
 
 <template>
   <Toolbar
-    class="border-b border-neutral-600 bg-emerald-600"
+    class="border-b border-neutral-600 bg-emerald-600 sticky top-0 z-50 shadow"
     unstyled
   >
     <template
