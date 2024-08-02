@@ -34,16 +34,15 @@ const getDefaultScores = (course: ICourse) => {
 }
 
 const handleCreateScoreCard = (course: ICourse) => {
-  let courseId = course.id
-
   if (course && !course.id) {
-    const { id } = createCourse(course)
-    courseId = id
+    createCourse(course)
   }
 
   const { id } = createScoreCard({
     id: '',
-    courseId: course.id || courseId,
+    name: course.name,
+    holes: course.holes,
+    courseType: course.courseType,
     players: [],
     scores: getDefaultScores(course),
     date: new Date().toLocaleDateString(),
@@ -60,6 +59,7 @@ const handleCreateScoreCard = (course: ICourse) => {
 
   <Message
     v-if="!courses.length"
+    class="mb-8"
     severity="info"
   >
     Your Course List is empty. Start by adding a New Course.
@@ -128,7 +128,7 @@ const handleCreateScoreCard = (course: ICourse) => {
     <div v-if="selectedCourse?.id">
       <Button
         label="Start Score Card"
-        @click="() => handleCreateScoreCard"
+        @click="() => handleCreateScoreCard(selectedCourse as ICourse)"
       />
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { InputNumberInputEvent } from 'primevue/inputnumber'
-import { useCoursesStore } from '../../course/store/useCoursesStore'
+// import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { useScoreCardStore } from '../store/useScoreCardStore'
 import { IScore } from '../types'
 import { MenuItem } from 'primevue/menuitem'
@@ -8,8 +8,8 @@ import { MenuItem } from 'primevue/menuitem'
 const scoreCardStore = useScoreCardStore()
 const { activeScoreCard } = storeToRefs(scoreCardStore)
 
-const coursesStore = useCoursesStore()
-const { activeCourse } = storeToRefs(coursesStore)
+// const coursesStore = useCoursesStore()
+// const { activeCourse } = storeToRefs(coursesStore)
 
 const activeRow = ref<number | null>(null)
 
@@ -23,7 +23,7 @@ const scoreData = computed(() => {
 
 const scoreColumns = computed(() => {
   if (!activeScoreCard.value?.scores.length) {
-    const columns = activeCourse.value?.holes.map<string>((_, index) => {
+    const columns = activeScoreCard.value?.holes.map<string>((_, index) => {
       return String(index + 1)
     }).sort((a, b) => parseInt(a) - parseInt(b))
 
@@ -62,10 +62,10 @@ const getRowTotal = (rowData: IScore) => {
   return total
 }
 
-const activeCourseParTotal = computed(() => {
-  if (!activeCourse.value) return 0
+const activeScoreCardParTotal = computed(() => {
+  if (!activeScoreCard.value) return 0
 
-  return activeCourse.value.holes.reduce((accumulator, currentValue) => accumulator + currentValue.par, 0)
+  return activeScoreCard.value.holes.reduce((accumulator, currentValue) => accumulator + currentValue.par, 0)
 })
 
 const defaultScore = computed(() => {
@@ -74,9 +74,9 @@ const defaultScore = computed(() => {
     total: null,
   }
 
-  if (!activeCourse.value) return scoreObject
+  if (!activeScoreCard.value) return scoreObject
 
-  for (let i = 1; i < activeCourse.value.numberOfHoles + 1; i++) {
+  for (let i = 1; i < activeScoreCard.value.holes.length + 1; i++) {
     scoreObject[i] = null
   }
   return scoreObject
@@ -131,7 +131,7 @@ const getBodyClass = (col: string) => {
 
 <template>
   <DataTable
-    v-if="activeScoreCard && activeCourse"
+    v-if="activeScoreCard"
     :value="scoreData"
     show-gridlines
     scrollable
@@ -162,10 +162,10 @@ const getBodyClass = (col: string) => {
         >
           Hole {{ col }}
           <span
-            v-if="activeCourse"
+            v-if="activeScoreCard"
             class="block text-muted-color"
           >
-            Par {{ activeCourse.holes[parseInt(col) - 1]?.par }}
+            Par {{ activeScoreCard.holes[parseInt(col) - 1]?.par }}
           </span>
         </span>
         <span
@@ -174,10 +174,10 @@ const getBodyClass = (col: string) => {
         >
           Total
           <span
-            v-if="activeCourse"
+            v-if="activeScoreCard"
             class="block text-muted-color"
           >
-            Par {{ activeCourseParTotal }}
+            Par {{ activeScoreCardParTotal }}
           </span>
         </span>
       </template>
@@ -243,7 +243,3 @@ const getBodyClass = (col: string) => {
     />
   </div>
 </template>
-
-<style scoped>
-
-</style>

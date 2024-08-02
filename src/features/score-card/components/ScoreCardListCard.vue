@@ -8,13 +8,9 @@ interface IProps {
   onRightClick: (event: Event, scoreCard: IScoreCard) => void
 }
 
-const { scoreCard, courses, onRightClick } = defineProps<IProps>()
+const { scoreCard, onRightClick } = defineProps<IProps>()
 
 const emit = defineEmits(['click'])
-
-const course = computed(() => {
-  return courses.find((course => course.id === scoreCard.courseId))
-})
 
 const playerNames = computed(() => {
   return scoreCard.scores.filter((score) => score.name).map(score => score.name)
@@ -38,7 +34,7 @@ const courseTypeMap = {
     <template #title>
       <div class="flex justify-between">
         <span class="overflow-hidden text-ellipsis">
-          {{ course?.name }}
+          {{ scoreCard.name }}
         </span>
         <span class="ml-2 text-muted-color font-normal">
           {{ scoreCard.date }}
@@ -46,17 +42,16 @@ const courseTypeMap = {
       </div>
     </template>
     <template
-      v-if="course"
       #subtitle
     >
       <div class="flex items-center">
         <Tag
           class="mr-2"
-          :value="courseTypeMap[course.courseType]"
+          :value="courseTypeMap[scoreCard.courseType]"
           severity="info"
         />
         <span>
-          {{ course.numberOfHoles }} Holes
+          {{ scoreCard.holes.length }} Holes
         </span>
       </div>
     </template>

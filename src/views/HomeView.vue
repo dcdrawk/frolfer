@@ -22,14 +22,14 @@
       <Button
         as="router-link"
         to="/score-card/list"
-        label="My Score Cards"
+        label="Score Cards"
         severity="secondary"
         class="mb-4"
       />
       <Button
         as="router-link"
         to="/course/list"
-        label="My Courses"
+        label="Courses"
         severity="secondary"
         class="mb-4"
       />

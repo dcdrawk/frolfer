@@ -34,8 +34,23 @@ const onScoreCardRightClick = (event: Event, scoreCard: IScoreCard) => {
     Score Cards
   </h1>
 
-  <section v-if="scoreCards">
+  <section
+    v-if="scoreCards"
+    class="relative"
+  >
+    <Button
+      label="New Score Card"
+      as="router-link"
+      class="w-full sm:w-auto mb-4"
+      to="/score-card/new"
+    />
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div v-if="!scoreCards.length">
+        <Message class="mb-4">
+          You don't have any Score Cards yet, try creating one!
+        </Message>
+      </div>
+
       <ScoreCardListCard
         v-for="scoreCard in scoreCards"
         :key="scoreCard.id"
