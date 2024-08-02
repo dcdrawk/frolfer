@@ -3,9 +3,7 @@ import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { useScoreCardStore } from '../store/useScoreCardStore'
 import { IScore } from '../types'
 import { MenuItem } from 'primevue/menuitem'
-// import { ColumnContext, ColumnState } from 'primevue/column'
-// import { TreeTablePassThroughOptions } from 'primevue/treetable'
-import { DataTableCellEditCompleteEvent, DataTableCellEditInitEvent, DataTablePassThroughMethodOptions } from 'primevue/datatable'
+import { DataTablePassThroughMethodOptions } from 'primevue/datatable'
 
 const scoreCardStore = useScoreCardStore()
 const { activeScoreCard } = storeToRefs(scoreCardStore)
@@ -46,6 +44,14 @@ const handleScoreInput = (event: InputNumberInputEvent, rowIndex: number, holeNu
   if (!activeScoreCard.value) return
 
   activeScoreCard.value.scores[rowIndex][holeNumber] = event.value as number
+}
+
+const handleNameInput = (event: Event, rowIndex: number, holeNumber: string) => {
+  if (!activeScoreCard.value) return
+
+  const { value } = event.target as HTMLInputElement
+
+  activeScoreCard.value.scores[rowIndex][holeNumber] = value
 }
 
 const getRowTotal = (rowData: IScore) => {
@@ -131,17 +137,6 @@ const getBodyClass = (col: string) => {
   }
 }
 
-const onCellEditInit = (event: DataTableCellEditInitEvent) => {
-  console.log(event)
-  console.log(event)
-  // event.preventDefault()
-  // event.stopPropagation()
-}
-
-const onCellEditComplete = (event: DataTableCellEditCompleteEvent) => {
-  console.log(event)
-}
-
 </script>
 
 <template>
@@ -162,8 +157,6 @@ const onCellEditComplete = (event: DataTableCellEditCompleteEvent) => {
     class="-mx-4 md:mx-0"
     striped-rows
     edit-mode="cell"
-    @cell-edit-init="onCellEditInit"
-    @cell-edit-complete="onCellEditComplete"
   >
     <Column
       v-for="(col) in scoreColumns"
@@ -245,6 +238,7 @@ const onCellEditComplete = (event: DataTableCellEditCompleteEvent) => {
           autofocus
           class="block min-w-[100px] -my-2"
           fluid
+          @input="handleNameInput($event, rowIndex, col.toString())"
         />
         <span
           v-else-if="col !== 'total'"
@@ -260,48 +254,7 @@ const onCellEditComplete = (event: DataTableCellEditCompleteEvent) => {
             @input="handleScoreInput($event, rowIndex, col.toString())"
           />
         </span>
-        <!-- <span
-          v-else
-          class="flex flex-row items-center justify-between"
-        >
-          {{ getRowTotal(data) }}1
-          <Button
-            type="button"
-            icon="pi pi-ellipsis-v"
-            aria-haspopup="true"
-            aria-controls="overlay_menu"
-            severity="secondary"
-            text
-            class="-mr-2 ml-4 pointer-events-auto"
-            size="small"
-            @click.stop="handleMenuClick($event, rowIndex)"
-          />
-          <Menu
-            :id="`overlay_menu_${rowIndex}`"
-            :ref="`menuRefs`"
-            popup
-            :model="menuItems"
-          />
-        </span> -->
       </template>
-      <!-- <template v-if="field !== 'price'">
-          <InputText
-            v-model="data[field]"
-            autofocus
-            fluid
-          />
-        </template>
-        <template v-else>
-          <InputNumber
-            v-model="data[field]"
-            mode="currency"
-            currency="USD"
-            locale="en-US"
-            autofocus
-            fluid
-          />
-        </template>
-      </template> -->
     </Column>
   </DataTable>
 
