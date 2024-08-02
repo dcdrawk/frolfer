@@ -49,6 +49,6 @@
     "eslint": "^9.7.0"
   },
   "lint-staged": {
-    "*.{ts,vue}": "eslint --fix"
+    "*.{ts,vue}": "npm run lint"
   }
 }
