@@ -42,7 +42,7 @@ const emit = defineEmits<{
     </AccordionHeader>
 
     <AccordionContent>
-      <div class="grid gap gap-4 gap-y-8 grid-cols-2 items-center">
+      <div class="grid gap gap-4 gap-y-8 grid-cols-2 md:max-w-[420px]">
         <FloatLabel class="col-span-2 mt-4">
           <label
             :for="`hole-${hole}-name`"

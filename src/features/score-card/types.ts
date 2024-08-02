@@ -1,3 +1,5 @@
+// import { IHole } from '../course/types'
+
 export interface IScore {
   name: string;
   total: number | null;
@@ -7,6 +9,9 @@ export interface IScore {
 export interface IScoreCard {
   id: string
   courseId: string
+  // name: string
+  // holes: IHole[],
+  // numberOfHoles: number
   players: string[]
   scores: IScore[]
   date: string

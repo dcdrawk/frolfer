@@ -11,8 +11,20 @@ export const courseTypeOptions = [{
   value: CourseType.VARIABLE_PAR,
 }]
 
+export const courseTypeMap = {
+  [CourseType.PAR_THREE]: 'Par 3',
+  [CourseType.PAR_FOUR]: 'Par 4',
+  [CourseType.VARIABLE_PAR]: 'Variable Par',
+}
+
 export const holeTemplate = {
   par: 3,
+}
+
+export const courseTypeBgColorMap = {
+  [CourseType.PAR_THREE]: '!bg-orange-300',
+  [CourseType.PAR_FOUR]: '!bg-yellow-200',
+  [CourseType.VARIABLE_PAR]: '!bg-indigo-300',
 }
 
 export const parBgColorMap: { [key: number]: string } = {

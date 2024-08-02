@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
-import { ICourse } from '../../course/types'
-// import { ICourse } from '../../course/types'
+import { CourseType, ICourse } from '../../course/types'
+import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils/courseUtils'
 import { useScoreCardStore } from '../store/useScoreCardStore'
 import { IScore } from '../types'
 
@@ -9,41 +10,14 @@ const router = useRouter()
 const { courses, create: createCourse } = useCoursesStore()
 const { create: createScoreCard } = useScoreCardStore()
 
-const selectedCourseId = ref<string | null>(null)
-
-const selectedCourse = computed(() => (
-  selectedCourseId.value &&
-  selectedCourseId.value !== 'new' &&
-  courses.find((course) => course.id === selectedCourseId.value)
-))
-
+const selectedCourse = ref<ICourse | null>(null)
 const courseSelectOptions = computed(() => {
-  const options = courses.map((course) => ({
-    text: course.name,
-    value: course.id,
-  }))
-
   return [{
-    text: 'New Course',
-    value: 'new',
-  }].concat(options)
+    name: 'New Course',
+  }].concat(courses)
 })
 
-const isNewCourse = computed(() => selectedCourseId.value === 'new' || courses.length === 0)
-
-// const defaultScores = computed(() => {
-//   const scoreObject: IScore = {
-//     name: '',
-//     total: null,
-//   }
-
-//   if (!selectedCourse.value) return [scoreObject]
-
-//   for (let i = 1; i < selectedCourse.value.numberOfHoles + 1; i++) {
-//     scoreObject[i] = null
-//   }
-//   return [scoreObject]
-// })
+const isNewCourse = computed(() => selectedCourse.value?.name === 'New Course' || courses.length === 0)
 
 const getDefaultScores = (course: ICourse) => {
   const scoreObject: IScore = {
@@ -60,7 +34,6 @@ const getDefaultScores = (course: ICourse) => {
 }
 
 const handleCreateScoreCard = (course: ICourse) => {
-  // console.log('handle create', course)
   let courseId = course.id
 
   if (course && !course.id) {
@@ -101,28 +74,65 @@ const handleCreateScoreCard = (course: ICourse) => {
         Select a Course
       </label>
       <Select
-        v-model="selectedCourseId"
+        v-model="selectedCourse"
         :options="courseSelectOptions"
-        option-label="text"
-        option-value="value"
         class="mb-8 w-full"
-      />
+      >
+        <template #value="slotProps">
+          <div
+            v-if="slotProps.value"
+            class="flex items-center justify-between h-7"
+          >
+            <div>
+              {{ slotProps.value.name }}
+            </div>
+
+            <div v-if="slotProps.value.name !== 'New Course'">
+              <span class="mr-2 text-muted-color">
+                {{ slotProps.value.numberOfHoles }} Holes
+              </span>
+              <Tag
+                :value="courseTypeMap[slotProps.value.courseType as CourseType]"
+                :class="courseTypeBgColorMap[slotProps.value.courseType as CourseType]"
+              />
+            </div>
+          </div>
+          <span
+            v-else
+            class="block h-7"
+          />
+        </template>
+        <template #option="slotProps">
+          <div class="flex items-center justify-between w-full overflow-hidden">
+            <div class="truncate max-w-[225px]">
+              {{ slotProps.option.name }}
+            </div>
+
+            <div
+              v-if="slotProps.option.name !== 'New Course'"
+              class="w-[130px] flex justify-end"
+            >
+              <span class="mr-2 text-muted-color">
+                {{ slotProps.option.numberOfHoles }} Holes
+              </span>
+              <Tag
+                :value="courseTypeMap[slotProps.option.courseType as CourseType]"
+                :class="courseTypeBgColorMap[slotProps.option.courseType as CourseType]"
+              />
+            </div>
+          </div>
+        </template>
+      </Select>
     </div>
 
-    <div v-if="selectedCourse">
-      <CourseInfoCard
-        :course="selectedCourse"
-      />
-
+    <div v-if="selectedCourse?.id">
       <Button
-        class="mt-8"
         label="Start Score Card"
         @click="() => handleCreateScoreCard"
       />
     </div>
   </div>
 
-  <!-- <CourseForm v-if="isNewCourse" /> -->
   <CourseFormEdit
     v-if="isNewCourse"
     submit-label="Start Score Card"
