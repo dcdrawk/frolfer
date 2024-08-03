@@ -112,7 +112,7 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
   menuRefs.value.forEach((menu: MenuItem) => {
     menu.hide()
   })
-  menuRefs.value[rowIndex].toggle(event)
+  menuRefs.value[rowIndex]?.toggle(event)
   activeRow.value = rowIndex
 }
 
@@ -231,7 +231,7 @@ const getBodyClass = (col: string) => {
           />
           <Menu
             :id="`overlay_menu_${rowIndex}`"
-            :ref="`menuRefs`"
+            ref="menuRefs"
             popup
             :model="menuItems"
           />
