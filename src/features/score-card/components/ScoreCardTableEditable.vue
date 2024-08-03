@@ -206,6 +206,12 @@ const getBodyClass = (col: string) => {
           }"
         >
           {{ data[field] }}
+          <span
+            v-if="col === 'name' && !data[field]"
+            class="text-muted-color"
+          >
+            Player Name
+          </span>
         </span>
         <span
           v-else
