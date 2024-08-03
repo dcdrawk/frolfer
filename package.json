@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite optimize --force && vue-tsc -b && vite build",
+    "build": "vite build && vue-tsc -b",
     "lint": "eslint --fix",
     "preview": "vite preview",
     "prepare": "husky"
@@ -43,7 +43,6 @@
     "unplugin-auto-import": "^0.18.0",
     "unplugin-vue-components": "^0.27.3",
     "vite": "^5.3.4",
-    "vite-plugin-pwa": "^0.20.1",
     "vue-tsc": "^2.0.24"
   },
   "overrides": {
