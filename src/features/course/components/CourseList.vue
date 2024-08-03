@@ -36,7 +36,7 @@ const handleCourseRightClick = (event: Event, course: ICourse) => {
 
   <section v-if="courses">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <CourseInfoCard
+      <CourseListCard
         v-for="course in courses"
         :key="course.id"
         v-ripple
@@ -53,7 +53,3 @@ const handleCourseRightClick = (event: Event, course: ICourse) => {
     </div>
   </section>
 </template>
-
-<style scoped>
-
-</style>

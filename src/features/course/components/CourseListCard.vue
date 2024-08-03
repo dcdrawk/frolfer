@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CourseType, ICourse } from '../types'
+import { courseTypeBgColorMap } from '../utils/courseUtils'
 
 interface IProps {
   clickable?: boolean
@@ -35,9 +36,8 @@ const emit = defineEmits<{
     <template #content>
       <div class="flex items-center">
         <Tag
-          class="mr-2"
+          :class="`mr-2 ${courseTypeBgColorMap[course.courseType]}`"
           :value="courseTypeText"
-          severity="info"
         />
         <span class="text-muted-color">
           {{ course.numberOfHoles }} Holes

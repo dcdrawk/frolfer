@@ -5,12 +5,8 @@ const drawerVisible = ref(false)
 <template>
   <AppToolbar @menu-button-click="drawerVisible = !drawerVisible" />
   <AppDrawer
-    :foo="drawerVisible"
+    :open="drawerVisible"
     @close="drawerVisible = false"
   />
   <slot />
 </template>
-
-<style scoped>
-
-</style>

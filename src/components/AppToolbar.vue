@@ -21,7 +21,7 @@ const emit = defineEmits(['menuButtonClick'])
         <h3 class="text-xl font-semibold flex items-center drop-shadow">
           <img
             class="mr-2"
-            src="../../frolfer.png"
+            src="/frolfer.png"
             width="36"
           >
           Frolfer

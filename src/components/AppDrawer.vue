@@ -1,15 +1,15 @@
 <script setup lang="ts">
-interface AppDrawerProps {
-  foo: boolean
-}
+import { ref } from 'vue'
 
-const props = defineProps<AppDrawerProps>()
+const props = defineProps<{
+  open: boolean
+}>()
+
 const visible = ref(false)
-
 const emit = defineEmits(['close'])
 
 watch(props, (newValue) => {
-  if (newValue.foo) {
+  if (newValue.open) {
     visible.value = true
   }
 })
@@ -21,7 +21,7 @@ const handleHide = () => {
 
 <template>
   <Drawer
-    v-model:visible="visible "
+    v-model:visible="visible"
     class="!border-0"
     dismissable
     @hide="handleHide"
@@ -32,7 +32,7 @@ const handleHide = () => {
           <span class="inline-flex items-center gap-2 drop-shadow">
             <img
               class="mr-2"
-              src="../../frolfer.png"
+              src="/frolfer.png"
               width="32"
             >
             <span class="font-semibold text-xl text-white">

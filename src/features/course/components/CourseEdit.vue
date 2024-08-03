@@ -17,7 +17,6 @@ if (id !== activeCourse.value?.id) {
 const handleSubmit = (course: ICourse) => {
   updateCourse(course)
 }
-
 </script>
 
 <template>
@@ -30,7 +29,3 @@ const handleSubmit = (course: ICourse) => {
     />
   </div>
 </template>
-
-<style scoped>
-
-</style>

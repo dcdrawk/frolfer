@@ -37,7 +37,3 @@ const accordionState = ref([])
     />
   </Accordion>
 </template>
-
-<style scoped>
-
-</style>

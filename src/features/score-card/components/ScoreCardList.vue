@@ -44,13 +44,13 @@ const onScoreCardRightClick = (event: Event, scoreCard: IScoreCard) => {
       class="w-full sm:w-auto mb-4"
       to="/score-card/new"
     />
+    <Message
+      v-if="!scoreCards.length"
+      class="mb-4 w-full"
+    >
+      You don't have any Score Cards yet. Create one by clicking "New Score Card".
+    </Message>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div v-if="!scoreCards.length">
-        <Message class="mb-4">
-          You don't have any Score Cards yet, try creating one!
-        </Message>
-      </div>
-
       <ScoreCardListCard
         v-for="scoreCard in scoreCards"
         :key="scoreCard.id"

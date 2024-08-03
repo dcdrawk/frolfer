@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { CourseType, ICourse } from '../../course/types'
+import { ICourse } from '../../course/types'
+import { courseTypeMap } from '../../course/utils/courseUtils'
 import { IScoreCard } from '../types'
 
 interface IProps {
@@ -15,12 +16,6 @@ const emit = defineEmits(['click'])
 const playerNames = computed(() => {
   return scoreCard.scores.filter((score) => score.name).map(score => score.name)
 })
-
-const courseTypeMap = {
-  [CourseType.PAR_THREE]: 'Par 3',
-  [CourseType.PAR_FOUR]: 'Par 4',
-  [CourseType.VARIABLE_PAR]: 'Variable Par',
-}
 </script>
 
 <template>
