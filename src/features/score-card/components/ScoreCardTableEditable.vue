@@ -123,7 +123,7 @@ const getHeaderClass = (col: string) => {
     case ('total'):
       return 'min-w-[125px]'
     default:
-      return 'min-w-[90px]'
+      return 'min-w-[95px]'
   }
 }
 
@@ -134,6 +134,7 @@ const getBodyClass = (col: string) => {
     case 'total':
       return 'pointer-events-none'
     default:
+      return 'md:max-w-[64px]'
   }
 }
 
@@ -186,7 +187,7 @@ const getBodyClass = (col: string) => {
         </span>
         <span
           v-else
-          class="w-[50px]"
+          class="min-w-[50px]"
         >
           Total
           <span
@@ -236,17 +237,18 @@ const getBodyClass = (col: string) => {
           v-if="col === 'name'"
           v-model="data[field]"
           autofocus
-          class="block min-w-[100px] -my-2"
+          class="!block min-w-[100px] max-w-[200px] -my-2"
           fluid
           @input="handleNameInput($event, rowIndex, col.toString())"
         />
         <span
           v-else-if="col !== 'total'"
+          class="block max-w-[100px]"
         >
           <InputNumber
             v-model="data[field]"
-            class="block min-w-[50px] m-auto !static -my-2"
-            input-class="text-center"
+            class="!block min-w-[50px] max-w-[100px] !static -my-2"
+            input-class="text-center !w-full"
             fluid
             :pt="{
               pcInput: {style: 'text-align: center'}
@@ -263,11 +265,6 @@ const getBodyClass = (col: string) => {
       label="Add Row"
       class="mt-4 block"
       severity="secondary"
-      @click="handleAddRow"
-    />
-    <Button
-      label="Complete Game"
-      class="mt-4 block"
       @click="handleAddRow"
     />
   </div>

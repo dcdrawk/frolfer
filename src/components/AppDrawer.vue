@@ -36,7 +36,7 @@ const handleHide = () => {
               width="32"
             >
             <span class="font-semibold text-xl text-white">
-              Frolfer!!
+              Frolfer
             </span>
           </span>
           <span class="-mr-6">
@@ -58,7 +58,6 @@ const handleHide = () => {
               to="/"
               @click="closeCallback"
             >
-              <!-- @click="emit('close')" -->
               <i class="pi pi-home mr-3" />
               <span class="font-medium">
                 Home
@@ -72,7 +71,6 @@ const handleHide = () => {
               to="/score-card/list"
               @click="closeCallback"
             >
-              <!-- @click="emit('close')" -->
               <i class="pi pi-table mr-3" />
               <span class="font-medium">
                 Score Cards
@@ -86,7 +84,6 @@ const handleHide = () => {
               to="/course/list"
               @click="closeCallback"
             >
-              <!-- @click="emit('close')" -->
               <i class="pi pi-flag-fill mr-3" />
               <span class="font-medium">
                 Courses
