@@ -21,7 +21,7 @@ const playerNames = computed(() => {
 <template>
   <Card
     v-ripple
-    class="cursor-pointer focus:ring-2"
+    class="cursor-pointer"
     tabindex="0"
     @contextmenu="onRightClick"
     @click="emit('click')"
