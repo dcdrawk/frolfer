@@ -3,13 +3,11 @@ import { ICourse } from '../../course/types'
 import { courseTypeMap } from '../../course/utils/courseUtils'
 import { IScoreCard } from '../types'
 
-interface IProps {
+const { scoreCard, onRightClick } = defineProps<{
   scoreCard: IScoreCard
   courses: ICourse []
   onRightClick: (event: Event, scoreCard: IScoreCard) => void
-}
-
-const { scoreCard, onRightClick } = defineProps<IProps>()
+}>()
 
 const emit = defineEmits(['click'])
 

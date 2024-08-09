@@ -15,3 +15,10 @@ export interface IScoreCard {
   scores: IScore[]
   date: string
 }
+
+export enum ScoreCardSortOption {
+  DATE,
+  COURSE_NAME,
+  NUMBER_OF_HOLES,
+  NUMBER_OF_PLAYERS
+}
