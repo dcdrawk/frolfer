@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ICourse } from '../../course/types'
-import { courseTypeMap } from '../../course/utils/courseUtils'
+import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils/courseUtils'
 import { IScoreCard } from '../types'
 
 const { scoreCard, onRightClick } = defineProps<{
@@ -40,8 +40,8 @@ const playerNames = computed(() => {
       <div class="flex items-center">
         <Tag
           class="mr-2"
+          :class="courseTypeBgColorMap[scoreCard.courseType]"
           :value="courseTypeMap[scoreCard.courseType]"
-          severity="info"
         />
         <span>
           {{ scoreCard.holes.length }} Holes
