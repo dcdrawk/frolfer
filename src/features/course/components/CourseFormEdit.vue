@@ -4,7 +4,7 @@ import type { SelectChangeEvent } from 'primevue/select'
 import type { ICourse, IHole } from '../types'
 import { CourseType } from '../types'
 import { Form } from 'vee-validate'
-import { holeTemplate, courseTypeOptions } from '../utils/courseUtils'
+import { holeTemplate, courseTypeOptions } from '../utils'
 
 const { course, title, submitLabel } = defineProps<{
   course?: ICourse
