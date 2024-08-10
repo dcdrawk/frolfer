@@ -28,11 +28,11 @@ const handleHide = () => {
   >
     <template #container="{ closeCallback }">
       <div class="flex flex-col h-full">
-        <div class="bg-emerald-600 flex items-center justify-between px-6 shrink-0">
-          <span class="inline-flex items-center gap-2 drop-shadow">
+        <div class="bg-emerald-700 flex items-center justify-between px-6 shrink-0">
+          <span class="flex items-center justify-start drop-shadow">
             <img
               class="mr-2"
-              src="/frolfer.png"
+              src="/frolfer-logo.png"
               width="32"
             >
             <span class="font-semibold text-xl text-white">

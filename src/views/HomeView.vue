@@ -6,11 +6,11 @@
     <p>
       Welcome to
     </p>
-    <h1 class="text-5xl font-semibold my-5 flex justify-center items-center">
+    <h1 class="text-5xl font-semibold my-6 flex flex-row justify-center items-center mx-auto max-w-[300px]">
       <img
-        src="/frolfer.png"
-        width="48"
-        class="block h-auto mr-4"
+        src="/frolfer-logo.png"
+        width="64"
+        class="block h-auto mr-6 drop-shadow-md"
       >
       <span>
         Frolfer

@@ -15,33 +15,35 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      includeAssets: ['frolfer.png'],
+      includeAssets: ['frolfer-logo.png'],
       manifest: {
         name: 'Frolfer',
         short_name: 'Frolfer',
         description: 'Disc Golf Score Card',
-        theme_color: '#059669',
+        background_color: '#047857',
+        theme_color: '#047857',
+        display: 'standalone',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: '/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: 'pwa-maskable-192x192.png',
+            src: '/pwa-maskable-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
           },
           {
-            src: 'pwa-maskable-512x512.png',
+            src: '/pwa-maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
