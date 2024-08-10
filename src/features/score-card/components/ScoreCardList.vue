@@ -3,6 +3,7 @@ import router from '../../../router'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { useScoreCardStore } from '../store/useScoreCardStore'
 import { IScoreCard, ScoreCardSortOption } from '../types'
+import { scoreCardSortByOptions } from '../utils'
 
 const { scoreCards, delete: deleteScoreCard } = useScoreCardStore()
 const { courses } = useCoursesStore()
@@ -37,20 +38,6 @@ const toggleSortDirection = () => {
   sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc'
 }
 
-const sortByOptions = [{
-  text: 'Date',
-  value: ScoreCardSortOption.DATE,
-}, {
-  text: 'Course Name',
-  value: ScoreCardSortOption.COURSE_NAME,
-}, {
-  text: 'Number of Holes',
-  value: ScoreCardSortOption.NUMBER_OF_HOLES,
-}, {
-  text: 'Number of Players',
-  value: ScoreCardSortOption.NUMBER_OF_PLAYERS,
-}]
-
 const scoreCardsSorted = computed(() => {
   return scoreCards.slice(0).sort((scoreCardA, scoreCardB) => {
     let compareA: number | string = 0
@@ -65,6 +52,11 @@ const scoreCardsSorted = computed(() => {
       case ScoreCardSortOption.COURSE_NAME:
         compareA = scoreCardA.name
         compareB = scoreCardB.name
+        break
+
+      case ScoreCardSortOption.COURSE_TYPE:
+        compareA = scoreCardA.courseType
+        compareB = scoreCardB.courseType
         break
 
       case ScoreCardSortOption.NUMBER_OF_HOLES:
@@ -115,29 +107,12 @@ const scoreCardsSorted = computed(() => {
         to="/score-card/new"
       />
 
-      <div class="flex items-end w-full sm:w-auto">
-        <span
-          class="mt-4 w-full sm:-mt-4 sm:flex sm:justify-end sm:items-center"
-        >
-          <label class="block text-muted-color text-xs sm:text-base sm:mr-2 mb-2 sm:mb-0">
-            Sort By
-          </label>
-          <Select
-            v-model="sortBy"
-            :options="sortByOptions"
-            option-label="text"
-            option-value="value"
-            class="!rounded-r-none sm:w-[205px]"
-            fluid
-          />
-        </span>
-        <Button
-          :icon="sortIcon"
-          class="w-full !rounded-l-none"
-          severity="secondary"
-          @click="toggleSortDirection"
-        />
-      </div>
+      <AppSortBySelect
+        v-model="sortBy"
+        :options="scoreCardSortByOptions"
+        :icon="sortIcon"
+        @toggle-sort-direction="toggleSortDirection"
+      />
     </div>
 
     <Message

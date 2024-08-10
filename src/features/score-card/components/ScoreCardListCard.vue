@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ICourse } from '../../course/types'
-import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils/courseUtils'
+import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils'
 import { IScoreCard } from '../types'
 
 const { scoreCard, onRightClick } = defineProps<{
@@ -63,3 +63,4 @@ const playerNames = computed(() => {
     </template>
   </Card>
 </template>
+../../course/utils

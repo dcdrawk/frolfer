@@ -15,7 +15,7 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      includeAssets: ['frolfer-logo.png'],
+      includeAssets: ['./frolfer/frolfer-logo.png'],
       manifest: {
         name: 'Frolfer',
         short_name: 'Frolfer',
@@ -23,27 +23,28 @@ export default defineConfig({
         background_color: '#047857',
         theme_color: '#047857',
         display: 'standalone',
+        start_url: '/frolfer/',
         icons: [
           {
-            src: '/pwa-192x192.png',
+            src: '/frolfer/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/pwa-512x512.png',
+            src: '/frolfer/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/pwa-maskable-192x192.png',
+            src: '/frolfer/pwa-maskable-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
           },
           {
-            src: '/pwa-maskable-512x512.png',
+            src: '/frolfer/pwa-maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',

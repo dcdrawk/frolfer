@@ -139,3 +139,4 @@ const handleCreateScoreCard = (course: ICourse) => {
     @submit="handleCreateScoreCard"
   />
 </template>
+../../course/utils

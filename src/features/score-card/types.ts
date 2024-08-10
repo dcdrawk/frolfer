@@ -19,6 +19,7 @@ export interface IScoreCard {
 export enum ScoreCardSortOption {
   DATE,
   COURSE_NAME,
+  COURSE_TYPE,
   NUMBER_OF_HOLES,
   NUMBER_OF_PLAYERS
 }

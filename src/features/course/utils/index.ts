@@ -1,4 +1,4 @@
-import { CourseType } from '../types'
+import { CourseSortOption, CourseType } from '../types'
 
 export const courseTypeOptions = [{
   text: 'Par 3',
@@ -34,3 +34,14 @@ export const parBgColorMap: { [key: number]: string } = {
   5: '!bg-green-300',
   6: '!bg-indigo-300',
 }
+
+export const courseSortByOptions = [{
+  text: 'Course Name',
+  value: CourseSortOption.COURSE_NAME,
+}, {
+  text: 'Course Type',
+  value: CourseSortOption.COURSE_TYPE,
+}, {
+  text: 'Number of Holes',
+  value: CourseSortOption.NUMBER_OF_HOLES,
+}]
