@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { CourseType, ICourse } from '../../course/types'
-import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils/courseUtils'
+import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils'
 import { useScoreCardStore } from '../store/useScoreCardStore'
 import { IScore } from '../types'
 
@@ -139,3 +139,4 @@ const handleCreateScoreCard = (course: ICourse) => {
     @submit="handleCreateScoreCard"
   />
 </template>
+../../course/utils

@@ -4,7 +4,7 @@ const emit = defineEmits(['menuButtonClick'])
 
 <template>
   <Toolbar
-    class="border-b border-neutral-600 bg-emerald-600 sticky top-0 z-50 shadow"
+    class="border-b border-neutral-600 bg-emerald-700 sticky top-0 z-50 shadow"
     unstyled
   >
     <template
@@ -21,8 +21,8 @@ const emit = defineEmits(['menuButtonClick'])
         <h3 class="text-xl font-semibold flex items-center drop-shadow">
           <img
             class="mr-2"
-            src="/frolfer.png"
-            width="36"
+            src="/frolfer-logo.png"
+            width="32"
           >
           Frolfer
         </h3>

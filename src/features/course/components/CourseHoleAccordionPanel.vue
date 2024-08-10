@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { InputNumberInputEvent } from 'primevue/inputnumber'
 import { CourseType } from '../types'
-import { parBgColorMap } from '../utils/courseUtils'
+import { parBgColorMap } from '../utils'
 
 const {
   hole,
@@ -14,7 +14,6 @@ const {
   courseType: CourseType
 }>()
 
-// const emit = defineEmits(['input-name', 'input-par', 'input-distance'])
 const emit = defineEmits<{
   'input-name': [event: Event, hole: number],
   'input-distance': [event: Event, hole: number],
@@ -98,3 +97,4 @@ const emit = defineEmits<{
     </AccordionContent>
   </AccordionPanel>
 </template>
+../utils

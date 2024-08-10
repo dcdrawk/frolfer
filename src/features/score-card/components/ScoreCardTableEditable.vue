@@ -130,7 +130,7 @@ const getHeaderClass = (col: string) => {
 const getBodyClass = (col: string) => {
   switch (col) {
     case 'name':
-      return 'outline outline-2 outline-[--p-datatable-header-cell-background]'
+      return 'outline outline-2 outline-[--p-datatable-header-cell-background] max-w-[140px] truncate'
     case 'total':
       return 'pointer-events-none'
     default:

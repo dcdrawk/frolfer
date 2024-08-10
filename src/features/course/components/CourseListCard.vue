@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CourseType, ICourse } from '../types'
-import { courseTypeBgColorMap } from '../utils/courseUtils'
+import { courseTypeBgColorMap } from '../utils'
 
 interface IProps {
   clickable?: boolean
@@ -46,3 +46,4 @@ const emit = defineEmits<{
     </template>
   </Card>
 </template>
+../utils

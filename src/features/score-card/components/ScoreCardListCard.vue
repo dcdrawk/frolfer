@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { ICourse } from '../../course/types'
-import { courseTypeMap } from '../../course/utils/courseUtils'
+import { courseTypeBgColorMap, courseTypeMap } from '../../course/utils'
 import { IScoreCard } from '../types'
 
-interface IProps {
+const { scoreCard, onRightClick } = defineProps<{
   scoreCard: IScoreCard
   courses: ICourse []
   onRightClick: (event: Event, scoreCard: IScoreCard) => void
-}
-
-const { scoreCard, onRightClick } = defineProps<IProps>()
+}>()
 
 const emit = defineEmits(['click'])
 
@@ -42,8 +40,8 @@ const playerNames = computed(() => {
       <div class="flex items-center">
         <Tag
           class="mr-2"
+          :class="courseTypeBgColorMap[scoreCard.courseType]"
           :value="courseTypeMap[scoreCard.courseType]"
-          severity="info"
         />
         <span>
           {{ scoreCard.holes.length }} Holes
@@ -65,3 +63,4 @@ const playerNames = computed(() => {
     </template>
   </Card>
 </template>
+../../course/utils

@@ -6,8 +6,15 @@
     <p>
       Welcome to
     </p>
-    <h1 class="text-5xl font-semibold my-5">
-      Frolfer 🥏
+    <h1 class="text-5xl font-semibold my-6 flex flex-row justify-center items-center mx-auto max-w-[300px]">
+      <img
+        src="/frolfer-logo.png"
+        width="64"
+        class="block h-auto mr-6 drop-shadow-md"
+      >
+      <span>
+        Frolfer
+      </span>
     </h1>
     <p
       class="mb-5"

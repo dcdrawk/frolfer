@@ -22,3 +22,9 @@ export interface ICourse {
   courseType: CourseType
   holes: IHole[]
 }
+
+export enum CourseSortOption {
+  COURSE_NAME,
+  COURSE_TYPE,
+  NUMBER_OF_HOLES
+}
