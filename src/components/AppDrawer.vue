@@ -28,7 +28,7 @@ const handleHide = () => {
   >
     <template #container="{ closeCallback }">
       <div class="flex flex-col h-full">
-        <div class="bg-emerald-700 flex items-center justify-between px-6 shrink-0">
+        <div class="bg-emerald-600 flex items-center justify-between px-6 shrink-0">
           <span class="flex items-center justify-start drop-shadow">
             <img
               class="mr-2"
@@ -41,7 +41,7 @@ const handleHide = () => {
           </span>
           <span class="-mr-6">
             <Button
-              class="!border-0 !rounded-none !bg-transparent text-white h-12"
+              class="!border-0 !rounded-none !bg-transparent !text-white h-12"
               type="button"
               icon="pi pi-times"
               plain

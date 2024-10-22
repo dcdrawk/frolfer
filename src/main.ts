@@ -15,11 +15,12 @@ app
   .use(PrimeVue, {
     theme: {
       preset: Lara,
+      options: {
+        darkModeSelector: '.dark',
+      },
     },
     ripple: true,
   })
   .use(router)
   .use(pinia)
   .mount('#app')
-
-// app.mount('#app')

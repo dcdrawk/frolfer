@@ -133,26 +133,28 @@ const handleSubmit = async () => {
           {{ title }}
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <FloatLabel class="w-full col-span-2">
-            <label
-              for="courseName"
-            >
-              Course Name*
-            </label>
-            <InputText
-              id="courseName"
-              v-model="courseName"
-              name="courseName"
-              fluid
-              :invalid="!!errorMessage"
-            />
+          <div class="col-span-2">
+            <FloatLabel class="w-full">
+              <label
+                for="courseName"
+              >
+                Course Name*
+              </label>
+              <InputText
+                id="courseName"
+                v-model="courseName"
+                name="courseName"
+                fluid
+                :invalid="!!errorMessage"
+              />
+            </FloatLabel>
             <small
               v-if="!!errorMessage"
-              class="absolute -bottom-6 left-1 text-red-300"
+              class="col-span-2 left-0 text-red-500 dark:text-red-300"
             >
               Course Name is Required
             </small>
-          </FloatLabel>
+          </div>
 
           <div class="col-span-1">
             <label

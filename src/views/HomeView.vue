@@ -32,6 +32,7 @@
         label="Score Cards"
         severity="secondary"
         class="mb-4"
+        raised
       />
       <Button
         as="router-link"
@@ -39,11 +40,13 @@
         label="Courses"
         severity="secondary"
         class="mb-4"
+        raised
       />
       <Button
         as="router-link"
         to="/score-card/new"
         label="New Score Card"
+        raised
       />
     </div>
   </section>

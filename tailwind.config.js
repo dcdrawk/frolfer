@@ -3,6 +3,7 @@ export default {
   content: [
     './index.html', './src/**/*.{vue,ts}',
   ],
+  darkMode: 'selector',
   theme: {
     fontFamily: {
       sans: [
