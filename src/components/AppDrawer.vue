@@ -41,7 +41,7 @@ const handleHide = () => {
           </span>
           <span class="-mr-6">
             <Button
-              class="!border-0 !rounded-none !bg-transparent text-white h-12"
+              class="!border-0 !rounded-none !bg-transparent !text-white h-12"
               type="button"
               icon="pi pi-times"
               plain
