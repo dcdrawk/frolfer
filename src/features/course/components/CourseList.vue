@@ -2,6 +2,7 @@
 import { useCoursesStore } from '../../course/store/useCoursesStore'
 import { CourseSortOption, ICourse } from '../types'
 import { courseSortByOptions } from '../utils'
+
 const { courses, delete: deleteCourse } = useCoursesStore()
 const router = useRouter()
 

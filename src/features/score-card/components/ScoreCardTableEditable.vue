@@ -119,7 +119,7 @@ const handleMenuClick = (event: Event, rowIndex: number) => {
 const getHeaderClass = (col: string) => {
   switch (col) {
     case ('name'):
-      return 'capitalize min-w-[140px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] !border-0 !border-r !border-[--p-datatable-row-background]'
+      return 'capitalize min-w-[140px] lg:min-w-[250px] !bg-[--p-datatable-header-cell-background] shadow -z-1'
     case ('total'):
       return 'min-w-[125px]'
     default:
@@ -130,7 +130,7 @@ const getHeaderClass = (col: string) => {
 const getBodyClass = (col: string) => {
   switch (col) {
     case 'name':
-      return 'outline outline-2 outline-[--p-datatable-header-cell-background] max-w-[140px] truncate'
+      return 'max-w-[140px] truncate shadow z-10 overflow-x-hidden'
     case 'total':
       return 'pointer-events-none'
     default:

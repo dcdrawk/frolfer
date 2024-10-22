@@ -22,17 +22,17 @@ export const holeTemplate = {
 }
 
 export const courseTypeBgColorMap = {
-  [CourseType.PAR_THREE]: '!bg-orange-300',
-  [CourseType.PAR_FOUR]: '!bg-yellow-200',
-  [CourseType.VARIABLE_PAR]: '!bg-indigo-300',
+  [CourseType.PAR_THREE]: '!bg-orange-500 dark:!bg-orange-300',
+  [CourseType.PAR_FOUR]: '!bg-yellow-500 dark:!bg-yellow-200',
+  [CourseType.VARIABLE_PAR]: '!bg-indigo-500 dark:!bg-indigo-300',
 }
 
 export const parBgColorMap: { [key: number]: string } = {
-  2: '!bg-red-300',
-  3: '!bg-orange-300',
-  4: '!bg-yellow-200',
-  5: '!bg-green-300',
-  6: '!bg-indigo-300',
+  2: '!bg-red-400 dark:!bg-red-300',
+  3: '!bg-orange-100 dark:!bg-orange-300',
+  4: '!bg-yellow-500 dark:!bg-yellow-200',
+  5: '!bg-green-500 dark:!bg-green-300',
+  6: '!bg-indigo-400 dark:!bg-indigo-300',
 }
 
 export const courseSortByOptions = [{

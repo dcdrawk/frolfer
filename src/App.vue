@@ -3,11 +3,18 @@
 
 <template>
   <main>
-    <!-- <AppToolbar /> -->
     <AppShell>
       <RouterView />
     </AppShell>
   </main>
 </template>
 
-<style scoped></style>
+<style>
+html.app-dark {
+  @apply bg-zinc-950;
+}
+
+html.app-light {
+  @apply bg-slate-100;
+}
+</style>
