@@ -20,8 +20,8 @@ export default defineConfig({
         name: 'Frolfer',
         short_name: 'Frolfer',
         description: 'Disc Golf Score Card',
-        background_color: '#047857',
-        theme_color: '#047857',
+        background_color: '#059669',
+        theme_color: '#059669',
         display: 'standalone',
         start_url: '/frolfer/',
         icons: [
